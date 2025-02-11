@@ -65,6 +65,10 @@
             "NeerCore": {
               "target": "Package",
               "version": "[2.0.1, )"
+            },
+            "Spectre.Console": {
+              "target": "Package",
+              "version": "[0.49.2-preview.0.74, )"
             }
           },
           "imports": [

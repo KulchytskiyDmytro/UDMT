@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4VUfUPdvbaE=",
+  "dgSpecHash": "aJv7Ow3DbY0=",
   "success": true,
   "projectFilePath": "C:\\Users\\Дмитро\\RiderProjects\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [
@@ -49,6 +49,7 @@
     "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\mono.texttemplating\\3.0.0\\mono.texttemplating.3.0.0.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\neercore\\2.0.1\\neercore.2.0.1.nupkg.sha512",
+    "C:\\Users\\Дмитро\\.nuget\\packages\\spectre.console\\0.49.2-preview.0.74\\spectre.console.0.49.2-preview.0.74.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\system.clientmodel\\1.0.0\\system.clientmodel.1.0.0.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
