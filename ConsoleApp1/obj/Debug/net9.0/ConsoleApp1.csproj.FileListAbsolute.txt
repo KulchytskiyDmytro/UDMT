@@ -146,3 +146,15 @@ C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\tr\
 C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.sourcelink.json
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\Spectre.Console.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\Spectre.Console.Cli.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\de\Spectre.Console.Cli.resources.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\es\Spectre.Console.Cli.resources.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\fr\Spectre.Console.Cli.resources.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\it\Spectre.Console.Cli.resources.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ja\Spectre.Console.Cli.resources.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ko\Spectre.Console.Cli.resources.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\pt\Spectre.Console.Cli.resources.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ru\Spectre.Console.Cli.resources.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\sv\Spectre.Console.Cli.resources.dll
+C:\Users\Дмитро\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\zh-Hans\Spectre.Console.Cli.resources.dll

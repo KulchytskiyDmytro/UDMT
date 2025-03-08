@@ -6,6 +6,7 @@ namespace ConsoleApp1;
 public class PlayerService : IPlayerService
 {
     private readonly AppDbContext _context;
+    private IPlayerService _playerServiceImplementation;
 
     public PlayerService(AppDbContext context)
     {
@@ -31,4 +32,12 @@ public class PlayerService : IPlayerService
         _context.Players.Add(player);
         await _context.SaveChangesAsync();
     }
+
+    public async Task DeletePlayer(int playerId)
+    {
+        var player = await _context.Players.FirstOrDefaultAsync(p => p.Id == playerId);
+        if (player != null) _context.Players.Remove(player);
+        await _context.SaveChangesAsync();
+    }
+
 }

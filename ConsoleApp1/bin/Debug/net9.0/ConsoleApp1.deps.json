@@ -12,7 +12,9 @@
           "Microsoft.EntityFrameworkCore.Design": "9.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.1",
           "Microsoft.Extensions.DependencyInjection": "9.0.1",
-          "NeerCore": "2.0.1"
+          "NeerCore": "2.0.1",
+          "Spectre.Console": "0.49.2-preview.0.74",
+          "Spectre.Console.Cli": "0.49.2-preview.0.74"
         },
         "runtime": {
           "ConsoleApp1.dll": {}
@@ -743,6 +745,57 @@
           }
         }
       },
+      "Spectre.Console/0.49.2-preview.0.74": {
+        "runtime": {
+          "lib/net9.0/Spectre.Console.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.49.2.0"
+          }
+        }
+      },
+      "Spectre.Console.Cli/0.49.2-preview.0.74": {
+        "dependencies": {
+          "Spectre.Console": "0.49.2-preview.0.74"
+        },
+        "runtime": {
+          "lib/net9.0/Spectre.Console.Cli.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.49.2.0"
+          }
+        },
+        "resources": {
+          "lib/net9.0/de/Spectre.Console.Cli.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net9.0/es/Spectre.Console.Cli.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net9.0/fr/Spectre.Console.Cli.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net9.0/it/Spectre.Console.Cli.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net9.0/ja/Spectre.Console.Cli.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net9.0/ko/Spectre.Console.Cli.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net9.0/pt/Spectre.Console.Cli.resources.dll": {
+            "locale": "pt"
+          },
+          "lib/net9.0/ru/Spectre.Console.Cli.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net9.0/sv/Spectre.Console.Cli.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net9.0/zh-Hans/Spectre.Console.Cli.resources.dll": {
+            "locale": "zh-Hans"
+          }
+        }
+      },
       "System.ClientModel/1.0.0": {
         "dependencies": {
           "System.Memory.Data": "1.0.2",
@@ -1321,6 +1374,20 @@
       "sha512": "sha512-TgIfJ1KooQVh+Egf6mZ6dUtesim4qvj5CaPG4dA+1yIANehiNaAORni3yTRjqStgW3qpmMiKaWCcvp4bT0zIRQ==",
       "path": "neercore/2.0.1",
       "hashPath": "neercore.2.0.1.nupkg.sha512"
+    },
+    "Spectre.Console/0.49.2-preview.0.74": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UhNNnzd4qfiebEmuNkklfPgWlcz4SUc3m07nPVDfmecSj8EAjQ0BqB1pzt+IqbIDc2dzDqUFnFmtU+KmaYjN4w==",
+      "path": "spectre.console/0.49.2-preview.0.74",
+      "hashPath": "spectre.console.0.49.2-preview.0.74.nupkg.sha512"
+    },
+    "Spectre.Console.Cli/0.49.2-preview.0.74": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jX/u2f7Ycv/mxMtgXUfovbUxttnNL41N4mDjEEmjZl2O6MMi/8+YZc+Sf6mQN9qYVCbh98WA9CGVXeIIdamZ4w==",
+      "path": "spectre.console.cli/0.49.2-preview.0.74",
+      "hashPath": "spectre.console.cli.0.49.2-preview.0.74.nupkg.sha512"
     },
     "System.ClientModel/1.0.0": {
       "type": "package",
