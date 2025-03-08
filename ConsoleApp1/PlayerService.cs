@@ -33,7 +33,7 @@ public class PlayerService : IPlayerService
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeletePlayer(int playerId)
+    public async Task DeletePlayerAsync(int playerId)
     {
         var player = await _context.Players.FirstOrDefaultAsync(p => p.Id == playerId);
         if (player != null) _context.Players.Remove(player);

@@ -6,5 +6,5 @@ public interface IPlayerService
 {
     Task<List<Player>> GetPlayersAsync();
     Task AddNewPlayer(string name, int race, int classname);
-    Task DeletePlayer(int playerId);
+    Task DeletePlayerAsync(int playerId);
 }
