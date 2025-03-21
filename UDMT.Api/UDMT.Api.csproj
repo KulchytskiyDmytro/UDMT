@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0-preview.1.25080.5" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0-preview.1.25080.5" />
+        <PackageReference Include="NeerCore" Version="2.0.1" />
+        <PackageReference Include="NeerCore.Api" Version="2.0.1" />
+        <PackageReference Include="NeerCore.Data.EntityFramework" Version="2.0.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.3.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.3.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\UDMT.Application\UDMT.Application.csproj" />
+      <ProjectReference Include="..\UDMT.Domain\UDMT.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

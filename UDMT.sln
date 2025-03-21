@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDMT.Api", "UDMT.Api\UDMT.Api.csproj", "{252FAD92-1078-4A2B-9869-7464CF5B8933}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDMT.Domain", "UDMT.Domain\UDMT.Domain.csproj", "{892F00C2-4085-471E-8D5A-BC246E74810D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDMT.Application", "UDMT.Application\UDMT.Application.csproj", "{C386A3F7-379F-4399-B1D8-52FD231EDBE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{252FAD92-1078-4A2B-9869-7464CF5B8933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252FAD92-1078-4A2B-9869-7464CF5B8933}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252FAD92-1078-4A2B-9869-7464CF5B8933}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252FAD92-1078-4A2B-9869-7464CF5B8933}.Release|Any CPU.Build.0 = Release|Any CPU
+		{892F00C2-4085-471E-8D5A-BC246E74810D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{892F00C2-4085-471E-8D5A-BC246E74810D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{892F00C2-4085-471E-8D5A-BC246E74810D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{892F00C2-4085-471E-8D5A-BC246E74810D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C386A3F7-379F-4399-B1D8-52FD231EDBE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C386A3F7-379F-4399-B1D8-52FD231EDBE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C386A3F7-379F-4399-B1D8-52FD231EDBE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C386A3F7-379F-4399-B1D8-52FD231EDBE8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

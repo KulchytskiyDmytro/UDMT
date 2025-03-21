@@ -1,0 +1,14 @@
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\bin\Debug\net9.0\UDMT.Domain.deps.json
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\bin\Debug\net9.0\UDMT.Domain.dll
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\bin\Debug\net9.0\UDMT.Domain.pdb
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\obj\Debug\net9.0\UDMT.Domain.csproj.AssemblyReference.cache
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\obj\Debug\net9.0\UDMT.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\obj\Debug\net9.0\UDMT.Domain.AssemblyInfoInputs.cache
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\obj\Debug\net9.0\UDMT.Domain.AssemblyInfo.cs
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\obj\Debug\net9.0\UDMT.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\obj\Debug\net9.0\UDMT.Domain.dll
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\obj\Debug\net9.0\refint\UDMT.Domain.dll
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\obj\Debug\net9.0\UDMT.Domain.pdb
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\obj\Debug\net9.0\ref\UDMT.Domain.dll
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\bin\Debug\net9.0\UDMT.Domain.runtimeconfig.json
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Domain\obj\Debug\net9.0\UDMT.Domain.genruntimeconfig.cache
