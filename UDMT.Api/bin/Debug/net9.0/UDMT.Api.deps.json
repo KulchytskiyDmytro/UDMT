@@ -797,7 +797,8 @@
       "UDMT.Domain/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "9.0.3",
-          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.3"
+          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.3",
+          "NeerCore.Data.EntityFramework": "2.0.1"
         },
         "runtime": {
           "UDMT.Domain.dll": {

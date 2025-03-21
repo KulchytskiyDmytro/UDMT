@@ -13,3 +13,4 @@ C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Application\obj\Debug\net9.0\UDMT.
 C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Application\obj\Debug\net9.0\refint\UDMT.Application.dll
 C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Application\obj\Debug\net9.0\UDMT.Application.pdb
 C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Application\obj\Debug\net9.0\ref\UDMT.Application.dll
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Application\obj\Debug\net9.0\UDMT.Application.sourcelink.json

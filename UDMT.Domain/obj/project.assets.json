@@ -697,6 +697,46 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "Microsoft.Extensions.FileProviders.Abstractions/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "7.0.0"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Hosting.Abstractions/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "Microsoft.Extensions.FileProviders.Abstractions": "7.0.0"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
       "Microsoft.Extensions.Logging/9.0.3": {
         "type": "package",
         "dependencies": {
@@ -973,6 +1013,83 @@
         },
         "build": {
           "buildTransitive/Mono.TextTemplating.targets": {}
+        }
+      },
+      "NeerCore/2.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/NeerCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/NeerCore.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "NeerCore.Data/2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NeerCore": "2.0.1",
+          "NeerCore.Data.Abstractions": "2.0.1"
+        },
+        "compile": {
+          "lib/net6.0/NeerCore.Data.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/NeerCore.Data.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "NeerCore.Data.Abstractions/2.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/NeerCore.Data.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/NeerCore.Data.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "NeerCore.Data.EntityFramework/2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.4",
+          "NeerCore": "2.0.1",
+          "NeerCore.Data": "2.0.1",
+          "NeerCore.Data.Abstractions": "2.0.1",
+          "NeerCore.DependencyInjection": "2.0.1"
+        },
+        "compile": {
+          "lib/net6.0/NeerCore.Data.EntityFramework.dll": {
+            "related": ".runtimeconfig.json;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/NeerCore.Data.EntityFramework.dll": {
+            "related": ".runtimeconfig.json;.xml"
+          }
+        }
+      },
+      "NeerCore.DependencyInjection/2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1"
+        },
+        "compile": {
+          "lib/net6.0/NeerCore.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/NeerCore.DependencyInjection.dll": {}
         }
       },
       "System.ClientModel/1.0.0": {
@@ -3042,6 +3159,62 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.FileProviders.Abstractions/7.0.0": {
+      "sha512": "NyawiW9ZT/liQb34k9YqBSNPLuuPkrjMgQZ24Y/xXX1RoiBkLUdPMaQTmxhZ5TYu8ZKZ9qayzil75JX95vGQUg==",
+      "type": "package",
+      "path": "microsoft.extensions.fileproviders.abstractions/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.FileProviders.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.FileProviders.Abstractions.targets",
+        "lib/net462/Microsoft.Extensions.FileProviders.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.FileProviders.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.FileProviders.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.FileProviders.Abstractions.xml",
+        "lib/net7.0/Microsoft.Extensions.FileProviders.Abstractions.dll",
+        "lib/net7.0/Microsoft.Extensions.FileProviders.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Abstractions.xml",
+        "microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
+        "microsoft.extensions.fileproviders.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Hosting.Abstractions/7.0.0": {
+      "sha512": "43n9Je09z0p/7ViPxfRqs5BUItRLNVh5b6JH40F2Agkh2NBsY/jpNYTtbCcxrHCsA3oRmbR6RJBzUutB4VZvNQ==",
+      "type": "package",
+      "path": "microsoft.extensions.hosting.abstractions/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Hosting.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Hosting.Abstractions.targets",
+        "lib/net462/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "lib/net7.0/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/net7.0/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "microsoft.extensions.hosting.abstractions.7.0.0.nupkg.sha512",
+        "microsoft.extensions.hosting.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "Microsoft.Extensions.Logging/9.0.3": {
       "sha512": "utIi2R1nm+PCWkvWBf1Ou6LWqg9iLfHU23r8yyU9VCvda4dEs7xbTZSwGa5KuwbpzpgCbHCIuKaFHB3zyFmnGw==",
       "type": "package",
@@ -3483,6 +3656,76 @@
         "mono.texttemplating.3.0.0.nupkg.sha512",
         "mono.texttemplating.nuspec",
         "readme.md"
+      ]
+    },
+    "NeerCore/2.0.1": {
+      "sha512": "TgIfJ1KooQVh+Egf6mZ6dUtesim4qvj5CaPG4dA+1yIANehiNaAORni3yTRjqStgW3qpmMiKaWCcvp4bT0zIRQ==",
+      "type": "package",
+      "path": "neercore/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "favicon.png",
+        "lib/net6.0/NeerCore.dll",
+        "lib/net6.0/NeerCore.xml",
+        "neercore.2.0.1.nupkg.sha512",
+        "neercore.nuspec"
+      ]
+    },
+    "NeerCore.Data/2.0.1": {
+      "sha512": "Y70jPNzR8HkHTF8S6JiWdeqE5YzHOiAZNq4ZsfbP59Qj5dxiLHnRNgpxtCsLnSlx/dc8yOGGV2t1mL61VhOuVA==",
+      "type": "package",
+      "path": "neercore.data/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "favicon.png",
+        "lib/net6.0/NeerCore.Data.dll",
+        "lib/net6.0/NeerCore.Data.xml",
+        "neercore.data.2.0.1.nupkg.sha512",
+        "neercore.data.nuspec"
+      ]
+    },
+    "NeerCore.Data.Abstractions/2.0.1": {
+      "sha512": "vFzFlUTPGvB8jsL3z7rSCEZIgKZTBBkOg+p1Bu5mPYSO2izdFJMcUaMRfGVzw10aK1Dza9+6tNznrtq4dGgJig==",
+      "type": "package",
+      "path": "neercore.data.abstractions/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "favicon.png",
+        "lib/net6.0/NeerCore.Data.Abstractions.dll",
+        "lib/net6.0/NeerCore.Data.Abstractions.xml",
+        "neercore.data.abstractions.2.0.1.nupkg.sha512",
+        "neercore.data.abstractions.nuspec"
+      ]
+    },
+    "NeerCore.Data.EntityFramework/2.0.1": {
+      "sha512": "6sJns/SZrxOifsIz3qqLOMz7kPPBlT/YzwwR2KMOCOVE88TxyV0kwTMnR/Srua7ZJX1Up222haB7QAR0T8zLaA==",
+      "type": "package",
+      "path": "neercore.data.entityframework/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "favicon.png",
+        "lib/net6.0/NeerCore.Data.EntityFramework.dll",
+        "lib/net6.0/NeerCore.Data.EntityFramework.runtimeconfig.json",
+        "lib/net6.0/NeerCore.Data.EntityFramework.xml",
+        "neercore.data.entityframework.2.0.1.nupkg.sha512",
+        "neercore.data.entityframework.nuspec"
+      ]
+    },
+    "NeerCore.DependencyInjection/2.0.1": {
+      "sha512": "tJ7YTLFyVY1M6ltLzaoA8e0K3NkkKjUH9U1Z+dSsrjm14fKlL73o81g8uXjzdX1rSOc9qxNc+fdOUlP7EpEXuQ==",
+      "type": "package",
+      "path": "neercore.dependencyinjection/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "favicon.png",
+        "lib/net6.0/NeerCore.DependencyInjection.dll",
+        "neercore.dependencyinjection.2.0.1.nupkg.sha512",
+        "neercore.dependencyinjection.nuspec"
       ]
     },
     "System.ClientModel/1.0.0": {
@@ -4676,7 +4919,8 @@
     "net9.0": [
       "Microsoft.EntityFrameworkCore >= 9.0.3",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.3",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.3"
+      "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.3",
+      "NeerCore.Data.EntityFramework >= 2.0.1"
     ]
   },
   "packageFolders": {
@@ -4735,6 +4979,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[9.0.3, )"
+          },
+          "NeerCore.Data.EntityFramework": {
+            "target": "Package",
+            "version": "[2.0.1, )"
           }
         },
         "imports": [

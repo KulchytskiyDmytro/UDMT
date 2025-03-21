@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jo256nUtnUI=",
+  "dgSpecHash": "lAujnMMXUQg=",
   "success": true,
   "projectFilePath": "C:\\Users\\Дмитро\\RiderProjects\\UDMT\\UDMT.Domain\\UDMT.Domain.csproj",
   "expectedPackageFiles": [
@@ -31,6 +31,8 @@
     "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.3\\microsoft.extensions.dependencyinjection.9.0.3.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.3\\microsoft.extensions.dependencyinjection.abstractions.9.0.3.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.extensions.dependencymodel\\9.0.3\\microsoft.extensions.dependencymodel.9.0.3.nupkg.sha512",
+    "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\7.0.0\\microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\7.0.0\\microsoft.extensions.hosting.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.extensions.logging\\9.0.3\\microsoft.extensions.logging.9.0.3.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.3\\microsoft.extensions.logging.abstractions.9.0.3.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.extensions.options\\9.0.3\\microsoft.extensions.options.9.0.3.nupkg.sha512",
@@ -48,6 +50,11 @@
     "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\mono.texttemplating\\3.0.0\\mono.texttemplating.3.0.0.nupkg.sha512",
+    "C:\\Users\\Дмитро\\.nuget\\packages\\neercore\\2.0.1\\neercore.2.0.1.nupkg.sha512",
+    "C:\\Users\\Дмитро\\.nuget\\packages\\neercore.data\\2.0.1\\neercore.data.2.0.1.nupkg.sha512",
+    "C:\\Users\\Дмитро\\.nuget\\packages\\neercore.data.abstractions\\2.0.1\\neercore.data.abstractions.2.0.1.nupkg.sha512",
+    "C:\\Users\\Дмитро\\.nuget\\packages\\neercore.data.entityframework\\2.0.1\\neercore.data.entityframework.2.0.1.nupkg.sha512",
+    "C:\\Users\\Дмитро\\.nuget\\packages\\neercore.dependencyinjection\\2.0.1\\neercore.dependencyinjection.2.0.1.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\system.clientmodel\\1.0.0\\system.clientmodel.1.0.0.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\Дмитро\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",

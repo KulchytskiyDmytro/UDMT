@@ -40,11 +40,8 @@ public class PlayerService : IPlayerService
         var player = await _context.Players
             .FirstOrDefaultAsync(p => p.Id == playerDto.Id);
 
-        if (player == null)
-        {
-            throw new Exception($"Player Id={playerDto.Id} не найден");
-        }
-
+        if (player == null) throw new Exception($"Player Id={playerDto.Id} не найден");
+        
         player.PlayerName = playerDto.PlayerName;
         player.RaceId = playerDto.RaceId;
         player.PlayerClassId = playerDto.PlayerClassId;

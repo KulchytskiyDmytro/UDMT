@@ -235,6 +235,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[9.0.3, )"
+            },
+            "NeerCore.Data.EntityFramework": {
+              "target": "Package",
+              "version": "[2.0.1, )"
             }
           },
           "imports": [

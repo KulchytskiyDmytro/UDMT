@@ -42,7 +42,7 @@ namespace UDMT.Domain.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("CharacterAttributes");
+                    b.ToTable("CharacterAttributes", (string)null);
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.Player", b =>
@@ -69,7 +69,7 @@ namespace UDMT.Domain.Migrations
 
                     b.HasIndex("RaceId");
 
-                    b.ToTable("Players");
+                    b.ToTable("Players", (string)null);
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.PlayerClass", b =>
@@ -86,7 +86,7 @@ namespace UDMT.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PlayerClasses");
+                    b.ToTable("PlayerClasses", (string)null);
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.Race", b =>
@@ -110,7 +110,7 @@ namespace UDMT.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Races");
+                    b.ToTable("Races", (string)null);
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.CharacterAttribute", b =>
