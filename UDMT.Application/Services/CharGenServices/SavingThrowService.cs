@@ -14,7 +14,7 @@ public class SavingThrowService : ISavingThrowService
         _context = context;
     }
     
-    public async Task<ICollection<SavingThrowDto>> SavingThrowAsync(int playerId)
+    public async Task<ICollection<SavingThrowDto>> CalcSavingThrowAsync(int playerId)
     {
         var player = await _context.Players
             .Include(p => p.Attributes)

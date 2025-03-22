@@ -10,6 +10,8 @@ public class PlayerDto
     
     public int PlayerClassId { get; set; }
     
+    public int ProficencyBonus { get; set; }
+    
     public ICollection<CharacterAttributeDto> CharacterAttributes { get; set; } = new List<CharacterAttributeDto>();
     
     public ICollection<SavingThrowDto> SavingThrowDtos { get; set; } = new List<SavingThrowDto>();

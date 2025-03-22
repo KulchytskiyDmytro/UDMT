@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UDMT.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6a8a21ea6d408a7bd665e36b69a75f2a8d65dbd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d616f5ef6183459671f6f5b14b4e9a9fe532dbb")]
 [assembly: System.Reflection.AssemblyProductAttribute("UDMT.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UDMT.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

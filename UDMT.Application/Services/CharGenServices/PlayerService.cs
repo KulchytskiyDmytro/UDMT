@@ -12,25 +12,47 @@ public class PlayerService : IPlayerService
 {
     private readonly AppDbContext _context;
     private IPlayerService _playerServiceImplementation;
-    private ISavingThrowService _savingThrowService;
+    private readonly ISavingThrowService _savingThrowService;
 
-    public PlayerService(AppDbContext context)
+    public PlayerService(AppDbContext context, ISavingThrowService savingThrowService)
     {
         _context = context;
+        _savingThrowService = savingThrowService;
     }
     
     public async Task<List<PlayerDto>> GetPlayersAsync()
     {
-        return await _context.Players
-            .ProjectToType<PlayerDto>() 
-            .ToListAsync();
+        var players = await _context.Players
+            .Include(p => p.Attributes)
+            .Include(p => p.PlayerClass)
+            .ThenInclude(pc => pc.SavingThrowProficiencies)
+            .ToListAsync(); // <- обычный fetch
+
+        var playersList = players.Adapt<List<PlayerDto>>();
+
+        foreach (var dto in playersList)
+        {
+            dto.SavingThrowDtos = await _savingThrowService.CalcSavingThrowAsync(dto.Id);
+        }
+
+        return playersList;
     }
 
     public async Task<PlayerDto?> GetPlayerByIdAsync(int playerId)
     {
-        return await _context.Players
-            .ProjectToType<PlayerDto>()
+        var player = await _context.Players
+            .Include(p => p.Attributes)
+            .Include(p => p.PlayerClass)
+            .ThenInclude(pc => pc.SavingThrowProficiencies)
             .FirstOrDefaultAsync(p => p.Id == playerId);
+
+        if (player is null)
+            return null;
+
+        var dto = player.Adapt<PlayerDto>();
+        dto.SavingThrowDtos = await _savingThrowService.CalcSavingThrowAsync(playerId);
+
+        return dto;
     }
 
     public async Task<int> AddNewPlayer(PlayerDto playerDto)
@@ -41,6 +63,7 @@ public class PlayerService : IPlayerService
 
         await GenerateAttributesAsync(player.Id, playerDto.RaceId);
 
+        await GenerateSavingThrowsAsync(player.Id);
         return player.Id;
     }
 
@@ -74,8 +97,7 @@ public class PlayerService : IPlayerService
 
     public async Task<ICollection<SavingThrowDto>> GenerateSavingThrowsAsync(int playerId)
     {
-        // разобраться почему null на классе
-        return await _savingThrowService.SavingThrowAsync(playerId);
+        return await _savingThrowService.CalcSavingThrowAsync(playerId);
     }
 
     public async Task UpdatePlayerAsync(PlayerDto playerDto)
