@@ -42,7 +42,7 @@ namespace UDMT.Domain.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("CharacterAttributes", (string)null);
+                    b.ToTable("CharacterAttributes");
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.Player", b =>
@@ -69,7 +69,7 @@ namespace UDMT.Domain.Migrations
 
                     b.HasIndex("RaceId");
 
-                    b.ToTable("Players", (string)null);
+                    b.ToTable("Players");
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.PlayerClass", b =>
@@ -80,13 +80,17 @@ namespace UDMT.Domain.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PlayerClassName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PlayerClasses", (string)null);
+                    b.ToTable("PlayerClasses");
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.Race", b =>
@@ -97,20 +101,72 @@ namespace UDMT.Domain.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Atribute")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Race_Name")
+                    b.Property<bool>("IsHomebrew")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRequireSubrace")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Races", (string)null);
+                    b.ToTable("Races");
+                });
+
+            modelBuilder.Entity("UDMT.Domain.Entity.RaceAttributeBonus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AttributeType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RaceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RaceId");
+
+                    b.ToTable("RaceAttributeBonusEnumerable");
+                });
+
+            modelBuilder.Entity("UDMT.Domain.Entity.RaceRelation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RaceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubraceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubraceId");
+
+                    b.HasIndex("RaceId", "SubraceId")
+                        .IsUnique()
+                        .HasFilter("[SubraceId] IS NOT NULL");
+
+                    b.ToTable("RaceRelations", (string)null);
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.CharacterAttribute", b =>
@@ -143,9 +199,45 @@ namespace UDMT.Domain.Migrations
                     b.Navigation("Race");
                 });
 
+            modelBuilder.Entity("UDMT.Domain.Entity.RaceAttributeBonus", b =>
+                {
+                    b.HasOne("UDMT.Domain.Entity.Race", "Race")
+                        .WithMany("AttributeBonuses")
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Race");
+                });
+
+            modelBuilder.Entity("UDMT.Domain.Entity.RaceRelation", b =>
+                {
+                    b.HasOne("UDMT.Domain.Entity.Race", "Race")
+                        .WithMany("RaceRelations")
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UDMT.Domain.Entity.Race", "Subrace")
+                        .WithMany()
+                        .HasForeignKey("SubraceId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Race");
+
+                    b.Navigation("Subrace");
+                });
+
             modelBuilder.Entity("UDMT.Domain.Entity.Player", b =>
                 {
                     b.Navigation("Attributes");
+                });
+
+            modelBuilder.Entity("UDMT.Domain.Entity.Race", b =>
+                {
+                    b.Navigation("AttributeBonuses");
+
+                    b.Navigation("RaceRelations");
                 });
 #pragma warning restore 612, 618
         }

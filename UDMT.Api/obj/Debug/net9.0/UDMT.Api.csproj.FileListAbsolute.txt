@@ -100,3 +100,6 @@ C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Api\bin\Debug\net9.0\UDMT.Applicat
 C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Api\bin\Debug\net9.0\UDMT.Domain.pdb
 C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Api\obj\Debug\net9.0\UDMT.Api.sourcelink.json
 C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Api\bin\Debug\net9.0\appsettings.Local.json
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Api\bin\Debug\net9.0\Mapster.dll
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Api\bin\Debug\net9.0\Mapster.Core.dll
+C:\Users\Дмитро\RiderProjects\UDMT\UDMT.Api\bin\Debug\net9.0\Mapster.DependencyInjection.dll

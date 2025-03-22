@@ -5,7 +5,7 @@ namespace UDMT.Application.Services;
 
 public interface IPlayerService
 {
-    Task<List<Player>> GetPlayersAsync();
+    Task<List<PlayerDto>> GetPlayersAsync();
     Task AddNewPlayer(PlayerDto playerDto);
     Task UpdatePlayerAsync(PlayerDto playerDto);
     Task DeletePlayerAsync(int playerId);

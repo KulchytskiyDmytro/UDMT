@@ -23,7 +23,7 @@ public class PlayerController : ControllerBase
     }
 
     [HttpGet("get")]
-    public async Task<List<Player>> GetPlayers()
+    public async Task<List<PlayerDto>> GetPlayers()
     {
         return await _playerService.GetPlayersAsync();
     }
@@ -34,8 +34,8 @@ public class PlayerController : ControllerBase
         await _playerService.UpdatePlayerAsync(playerDto);
     }
 
-    [HttpDelete("delete")]
-    public async Task RemovePlayer([FromBody] int playerId)
+    [HttpDelete("{playerId}")]
+    public async Task RemovePlayer([FromRoute] int playerId)
     {
         await _playerService.DeletePlayerAsync(playerId);
     }

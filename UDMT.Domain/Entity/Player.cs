@@ -9,6 +9,6 @@ public class Player
 
     public Race Race { get; set; }
     public PlayerClass PlayerClass { get; set; }
-    
-    public List<CharacterAttribute> Attributes { get; set; }
+
+    public ICollection<CharacterAttribute> Attributes { get; set; } = new List<CharacterAttribute>();
 }

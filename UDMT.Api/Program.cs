@@ -1,3 +1,4 @@
+using UDMT.Application.Configure;
 using UDMT.Application.Services;
 using UDMT.Domain;
 
@@ -18,6 +19,8 @@ static void ConfigureBuilder(WebApplicationBuilder builder)
     builder.Configuration.AddJsonFile("appsettings.Local.json");
     builder.Configuration.AddJsonFile("appsettings.Development.json");
     
+    MapsterConfig.RegisterMappings();
+    
     builder.Services.AddOpenApi();
     builder.Services.AddControllers(); 
     builder.Services.AddEndpointsApiExplorer();
@@ -26,6 +29,7 @@ static void ConfigureBuilder(WebApplicationBuilder builder)
     builder.Services.AddDatabase(builder.Configuration);
             
     builder.Services.AddScoped<IPlayerService, PlayerService>();
+    builder.Services.AddScoped<IRaceService, RaceService>();
 }
 
 static void ConfigureWebApp(WebApplication app)
