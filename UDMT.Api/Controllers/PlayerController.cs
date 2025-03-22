@@ -18,7 +18,16 @@ public class PlayerController : ControllerBase
     [HttpPost("add")]
     public async Task CreatePlayer([FromBody] PlayerDto playerDto)
     {
-        await _playerService.AddNewPlayer(playerDto);
+        var playerId = await _playerService.AddNewPlayer(playerDto);
+        await _playerService.GenerateAttributesAsync(playerId, playerDto.RaceId);
+        var savingThrows = await _playerService.GenerateSavingThrowsAsync(playerId);
+
+        var player = await _playerService.GetPlayerByIdAsync(playerId);
+        if (player is null)
+        {
+            throw new Exception($"Нет такого игрока {player.Id}");
+        }
+        player.SavingThrowDtos = savingThrows;
     }
 
     [HttpGet("get")]

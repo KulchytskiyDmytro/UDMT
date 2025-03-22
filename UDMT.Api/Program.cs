@@ -32,6 +32,7 @@ static void ConfigureBuilder(WebApplicationBuilder builder)
     builder.Services.AddScoped<IPlayerService, PlayerService>();
     builder.Services.AddScoped<IRaceService, RaceService>();
     builder.Services.AddScoped<ISubraceService, SubraceService>();
+    builder.Services.AddScoped<ISavingThrowService, SavingThrowService>();
 }
 
 static void ConfigureWebApp(WebApplication app)
