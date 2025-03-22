@@ -39,5 +39,5 @@ public static class MapsterConfig
                 {
                     SubraceId = r.SubraceId
                 }));
-    }
+    }   
 }

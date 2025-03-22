@@ -1,6 +1,7 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
 using UDMT.Application.DTO;
+using UDMT.Application.Services.CharGenServices;
 using UDMT.Domain.Context;
 using UDMT.Domain.Entity;
 

@@ -1,7 +1,6 @@
 ﻿using UDMT.Application.DTO;
-using UDMT.Domain.Entity;
 
-namespace UDMT.Application.Services;
+namespace UDMT.Application.Services.CharGenServices;
 
 public interface IPlayerService
 {

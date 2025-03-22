@@ -16,7 +16,7 @@ public class RaceService : IRaceService
         _context = context;
     }
     
-    public async Task<List<RaceDto>> GetRaceAsync()
+    public async Task<List<RaceDto>> GetRacesAsync()
     {
         return await _context.Races
             .ProjectToType<RaceDto>().ToListAsync();
@@ -28,7 +28,10 @@ public class RaceService : IRaceService
 
         if (!race.IsRequireSubrace)
             race.RaceRelations = new List<RaceRelation>();
-
+        else
+        {
+            race.RaceRelations = null;
+        }
         _context.Races.Add(race);
         await _context.SaveChangesAsync();
     }

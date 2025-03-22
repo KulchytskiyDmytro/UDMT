@@ -11,6 +11,6 @@ public class Race
     public bool IsHomebrew { get; set; }
     public bool IsRequireSubrace { get; set; }
 
-    public ICollection<RaceRelation> RaceRelations { get; set; }
-    public ICollection<RaceAttributeBonus> AttributeBonuses { get; set; }
+    public ICollection<RaceRelation>? RaceRelations { get; set; }
+    public ICollection<RaceAttributeBonus>? AttributeBonuses { get; set; }
 }

@@ -24,7 +24,7 @@ public class RaceController : ControllerBase
     [HttpGet("get")]
     public async Task<List<RaceDto>> GetRace()
     {
-        return await _raceService.GetRaceAsync();
+        return await _raceService.GetRacesAsync();
     }
     
     [HttpPut("update")]

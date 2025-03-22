@@ -1,5 +1,6 @@
 using UDMT.Application.Configure;
 using UDMT.Application.Services;
+using UDMT.Application.Services.CharGenServices;
 using UDMT.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,7 @@ static void ConfigureBuilder(WebApplicationBuilder builder)
             
     builder.Services.AddScoped<IPlayerService, PlayerService>();
     builder.Services.AddScoped<IRaceService, RaceService>();
+    builder.Services.AddScoped<ISubraceService, SubraceService>();
 }
 
 static void ConfigureWebApp(WebApplication app)
