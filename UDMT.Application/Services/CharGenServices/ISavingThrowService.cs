@@ -4,5 +4,5 @@ namespace UDMT.Application.Services.CharGenServices;
 
 public interface ISavingThrowService
 {
-    Task<ICollection<SavingThrowDto>> CalcSavingThrowAsync(int playerId);
+    Task<ICollection<SavingThrowDto>> CalcSavingThrowAsync(int characterId);
 }

@@ -5,8 +5,8 @@ namespace UDMT.Domain.Context;
 
 public class AppDbContext : DbContext
 {
-    public DbSet<Player> Players { get; set; }
-    public DbSet<PlayerClass> PlayerClasses { get; set; }
+    public DbSet<Character> Characters { get; set; }
+    public DbSet<CharacterClass> CharacterClasses { get; set; }
     
     
     
@@ -22,7 +22,7 @@ public class AppDbContext : DbContext
     
     public DbSet<Skill> Skills { get; set; }
     
-    public DbSet<PlayerClassSavingThrow> PlayerClassSavingThrows { get; set; }
+    public DbSet<ClassSavingThrow> ClassSavingThrows { get; set; }
 
 
     

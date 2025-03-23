@@ -14,33 +14,33 @@ public class SavingThrowService : ISavingThrowService
         _context = context;
     }
     
-    public async Task<ICollection<SavingThrowDto>> CalcSavingThrowAsync(int playerId)
+    public async Task<ICollection<SavingThrowDto>> CalcSavingThrowAsync(int characterId)
     {
-        var player = await _context.Players
+        var character = await _context.Characters
             .Include(p => p.Attributes)
-            .Include(p => p.PlayerClass)
+            .Include(p => p.CharacterClass)
             .ThenInclude(pc => pc.SavingThrowProficiencies)
-            .FirstOrDefaultAsync(p => p.Id == playerId);
+            .FirstOrDefaultAsync(p => p.Id == characterId);
 
-        if (player is null)
+        if (character is null)
         {
-            throw new Exception($"Player with Id={playerId} not found.");
+            throw new Exception($"Character with Id={characterId} not found.");
         }
 
-        var proficiencyBonus = player.ProficencyBonus;
+        var proficiencyBonus = character.ProficencyBonus;
 
         return Enum.GetValues<AttributeType>().Select(attr =>
         {
-            int score = player.Attributes.FirstOrDefault(a => a.AttributeType == attr)?.Value ?? 10;
+            int score = character.Attributes.FirstOrDefault(a => a.AttributeType == attr)?.Value ?? 10;
             var modifier = (score - 10) / 2;
-            var isProficient = player.PlayerClass.SavingThrowProficiencies?
+            var isProficient = character.CharacterClass.SavingThrowProficiencies?
                 .Any(p => p.AttributeType == attr) == true;
 
             return new SavingThrowDto
             {
                 Attribute = attr,
                 IsProficient = isProficient,
-                Bonus = modifier + (isProficient ? proficiencyBonus : 0)
+                
             };
         }).ToList();
     }

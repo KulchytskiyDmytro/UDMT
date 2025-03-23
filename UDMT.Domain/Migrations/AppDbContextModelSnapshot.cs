@@ -21,6 +21,36 @@ namespace UDMT.Domain.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("UDMT.Domain.Entity.Character", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CharacterClassId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProficencyBonus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RaceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterClassId");
+
+                    b.HasIndex("RaceId");
+
+                    b.ToTable("Characters");
+                });
+
             modelBuilder.Entity("UDMT.Domain.Entity.CharacterAttribute", b =>
                 {
                     b.Property<int>("Id")
@@ -32,7 +62,7 @@ namespace UDMT.Domain.Migrations
                     b.Property<int>("AttributeType")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("CharacterId")
                         .HasColumnType("int");
 
                     b.Property<int>("Value")
@@ -40,71 +70,12 @@ namespace UDMT.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlayerId");
+                    b.HasIndex("CharacterId");
 
                     b.ToTable("CharacterAttributes");
                 });
 
-            modelBuilder.Entity("UDMT.Domain.Entity.CharacterSkill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("BonusOverride")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("IsProficient")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("PlayerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlayerId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("CharacterSkills");
-                });
-
-            modelBuilder.Entity("UDMT.Domain.Entity.Player", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PlayerClassId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProficencyBonus")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RaceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlayerClassId");
-
-                    b.HasIndex("RaceId");
-
-                    b.ToTable("Players");
-                });
-
-            modelBuilder.Entity("UDMT.Domain.Entity.PlayerClass", b =>
+            modelBuilder.Entity("UDMT.Domain.Entity.CharacterClass", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,10 +93,10 @@ namespace UDMT.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PlayerClasses");
+                    b.ToTable("CharacterClasses");
                 });
 
-            modelBuilder.Entity("UDMT.Domain.Entity.PlayerClassSavingThrow", b =>
+            modelBuilder.Entity("UDMT.Domain.Entity.CharacterSavingThrow", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,14 +107,70 @@ namespace UDMT.Domain.Migrations
                     b.Property<int>("AttributeType")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerClassId")
+                    b.Property<int>("BonusOverride")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsProficient")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.ToTable("CharacterSavingThrow");
+                });
+
+            modelBuilder.Entity("UDMT.Domain.Entity.CharacterSkill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("BonusOverride")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsProficient")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SkillId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlayerClassId");
+                    b.HasIndex("CharacterId");
 
-                    b.ToTable("PlayerClassSavingThrows");
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("CharacterSkills");
+                });
+
+            modelBuilder.Entity("UDMT.Domain.Entity.ClassSavingThrow", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AttributeType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CharacterClassId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterClassId");
+
+                    b.ToTable("ClassSavingThrows");
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.Race", b =>
@@ -242,41 +269,11 @@ namespace UDMT.Domain.Migrations
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("UDMT.Domain.Entity.CharacterAttribute", b =>
+            modelBuilder.Entity("UDMT.Domain.Entity.Character", b =>
                 {
-                    b.HasOne("UDMT.Domain.Entity.Player", "Player")
-                        .WithMany("Attributes")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Player");
-                });
-
-            modelBuilder.Entity("UDMT.Domain.Entity.CharacterSkill", b =>
-                {
-                    b.HasOne("UDMT.Domain.Entity.Player", "Player")
-                        .WithMany("Skills")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UDMT.Domain.Entity.Skill", "Skill")
-                        .WithMany("CharacterSkills")
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Player");
-
-                    b.Navigation("Skill");
-                });
-
-            modelBuilder.Entity("UDMT.Domain.Entity.Player", b =>
-                {
-                    b.HasOne("UDMT.Domain.Entity.PlayerClass", "PlayerClass")
+                    b.HasOne("UDMT.Domain.Entity.CharacterClass", "CharacterClass")
                         .WithMany()
-                        .HasForeignKey("PlayerClassId")
+                        .HasForeignKey("CharacterClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -286,20 +283,61 @@ namespace UDMT.Domain.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("PlayerClass");
+                    b.Navigation("CharacterClass");
 
                     b.Navigation("Race");
                 });
 
-            modelBuilder.Entity("UDMT.Domain.Entity.PlayerClassSavingThrow", b =>
+            modelBuilder.Entity("UDMT.Domain.Entity.CharacterAttribute", b =>
                 {
-                    b.HasOne("UDMT.Domain.Entity.PlayerClass", "PlayerClass")
-                        .WithMany("SavingThrowProficiencies")
-                        .HasForeignKey("PlayerClassId")
+                    b.HasOne("UDMT.Domain.Entity.Character", "Character")
+                        .WithMany("Attributes")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("PlayerClass");
+                    b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("UDMT.Domain.Entity.CharacterSavingThrow", b =>
+                {
+                    b.HasOne("UDMT.Domain.Entity.Character", "Character")
+                        .WithMany("SavingThrows")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("UDMT.Domain.Entity.CharacterSkill", b =>
+                {
+                    b.HasOne("UDMT.Domain.Entity.Character", "Character")
+                        .WithMany("Skills")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UDMT.Domain.Entity.Skill", "Skill")
+                        .WithMany("CharacterSkills")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Skill");
+                });
+
+            modelBuilder.Entity("UDMT.Domain.Entity.ClassSavingThrow", b =>
+                {
+                    b.HasOne("UDMT.Domain.Entity.CharacterClass", "CharacterClass")
+                        .WithMany("SavingThrowProficiencies")
+                        .HasForeignKey("CharacterClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CharacterClass");
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.RaceAttributeBonus", b =>
@@ -331,14 +369,16 @@ namespace UDMT.Domain.Migrations
                     b.Navigation("Subrace");
                 });
 
-            modelBuilder.Entity("UDMT.Domain.Entity.Player", b =>
+            modelBuilder.Entity("UDMT.Domain.Entity.Character", b =>
                 {
                     b.Navigation("Attributes");
+
+                    b.Navigation("SavingThrows");
 
                     b.Navigation("Skills");
                 });
 
-            modelBuilder.Entity("UDMT.Domain.Entity.PlayerClass", b =>
+            modelBuilder.Entity("UDMT.Domain.Entity.CharacterClass", b =>
                 {
                     b.Navigation("SavingThrowProficiencies");
                 });

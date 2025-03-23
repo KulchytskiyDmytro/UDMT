@@ -4,9 +4,9 @@ public class CharacterAttribute
 {
     public int Id { get; set; }
     
-    public int PlayerId { get; set; }
+    public int CharacterId { get; set; }
     
-    public Player Player { get; set; }
+    public Character Character { get; set; }
     
     public AttributeType AttributeType { get; set; }
     

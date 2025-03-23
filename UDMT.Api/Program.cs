@@ -29,7 +29,7 @@ static void ConfigureBuilder(WebApplicationBuilder builder)
 
     builder.Services.AddDatabase(builder.Configuration);
             
-    builder.Services.AddScoped<IPlayerService, PlayerService>();
+    builder.Services.AddScoped<ICharacterService, CharacterService>();
     builder.Services.AddScoped<IRaceService, RaceService>();
     builder.Services.AddScoped<ISubraceService, SubraceService>();
     builder.Services.AddScoped<ISavingThrowService, SavingThrowService>();

@@ -8,19 +8,19 @@ public static class MapsterConfig
 {
     public static void RegisterMappings()
     {
-        // Player
+        // Character
         TypeAdapterConfig<CharacterAttributeDto, CharacterAttribute>.NewConfig();
-        TypeAdapterConfig<PlayerDto, Player>
+        TypeAdapterConfig<CharacterDto, Character>
             .NewConfig()
             .Map(dest => dest.Attributes, src => src.CharacterAttributes.Adapt<ICollection<CharacterAttribute>>());
 
         
-        TypeAdapterConfig<PlayerDto, Player>
+        TypeAdapterConfig<CharacterDto, Character>
             .NewConfig()
             .Map(dest => dest.Attributes, src => 
                 src.CharacterAttributes.Adapt<ICollection<CharacterAttribute>>());
         
-        TypeAdapterConfig<Player, PlayerDto>
+        TypeAdapterConfig<Character, CharacterDto>
             .NewConfig()
             .Map(dest => dest.CharacterAttributes, src => src.Attributes);
         

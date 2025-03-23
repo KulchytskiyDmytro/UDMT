@@ -1,6 +1,6 @@
 ﻿namespace UDMT.Application.DTO;
 
-public class PlayerDto
+public class CharacterDto
 {
     public int Id { get; set; }
     
@@ -8,7 +8,7 @@ public class PlayerDto
     
     public int RaceId { get; set; }
     
-    public int PlayerClassId { get; set; }
+    public int CharacterClassId { get; set; }
     
     public int ProficencyBonus { get; set; }
     
