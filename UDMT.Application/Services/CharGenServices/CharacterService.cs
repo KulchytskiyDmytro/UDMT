@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using System.Collections;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using UDMT.Application.DTO;
@@ -32,7 +33,7 @@ public class CharacterService : ICharacterService
 
         foreach (var dto in charactersAsync)
         {
-            dto.SavingThrowDtos = await _savingThrowService.CalcSavingThrowAsync(dto.Id);
+            dto.SavingThrowDtos = await _savingThrowService.GetSavingThrowsAsync(dto.Id);
         }
 
         return charactersAsync;
@@ -50,7 +51,7 @@ public class CharacterService : ICharacterService
             return null;
 
         var dto = character.Adapt<CharacterDto>();
-        dto.SavingThrowDtos = await _savingThrowService.CalcSavingThrowAsync(characterId);
+        dto.SavingThrowDtos = await _savingThrowService.GetSavingThrowsAsync(characterId);
 
         return dto;
     }
@@ -62,8 +63,12 @@ public class CharacterService : ICharacterService
         await _context.SaveChangesAsync(); // получить character.Id
 
         await GenerateAttributesAsync(character.Id, characterDto.RaceId);
-
-        await GenerateSavingThrowsAsync(character.Id);
+        
+        await _savingThrowService.InitializeForCharacterAsync(
+            character.Id, 
+            characterDto.CharacterClass.SavingThrowProficiencies
+            );
+        
         return character.Id;
     }
 
@@ -94,11 +99,7 @@ public class CharacterService : ICharacterService
 
         await _context.SaveChangesAsync();
     }
-
-    public async Task<ICollection<SavingThrowDto>> GenerateSavingThrowsAsync(int characterId)
-    {
-        return await _savingThrowService.CalcSavingThrowAsync(characterId);
-    }
+    
 
     public async Task UpdateCharacterAsync(CharacterDto characterDto)
     {

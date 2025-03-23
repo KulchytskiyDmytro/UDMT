@@ -2,7 +2,7 @@
 
 namespace UDMT.Application.DTO;
 
-public class SavingThrowDto
+public class CharacterSavingThrowDto
 {
     public AttributeType Attribute { get; set; }
     public bool IsProficient { get; set; }

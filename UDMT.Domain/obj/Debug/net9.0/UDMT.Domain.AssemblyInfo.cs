@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UDMT.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f143fa4c7e349281977be482099e1e2a527ff4d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0b4f37a2082e0f23e184fe18bec21d79cca6a3ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("UDMT.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UDMT.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

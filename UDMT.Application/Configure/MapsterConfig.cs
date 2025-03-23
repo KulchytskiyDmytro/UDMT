@@ -39,5 +39,11 @@ public static class MapsterConfig
                 {
                     SubraceId = r.SubraceId
                 }));
+        
+            // Character Class
+        TypeAdapterConfig<CharacterClass, CharacterClassDto>.NewConfig()
+            .Map(dest => dest.SavingThrowProficiencies,
+                src => src.SavingThrowProficiencies.Select(x => x.AttributeType).ToList());
+
     }   
 }

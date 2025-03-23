@@ -120,7 +120,7 @@ namespace UDMT.Domain.Migrations
 
                     b.HasIndex("CharacterId");
 
-                    b.ToTable("CharacterSavingThrow");
+                    b.ToTable("CharacterSavingThrows");
                 });
 
             modelBuilder.Entity("UDMT.Domain.Entity.CharacterSkill", b =>

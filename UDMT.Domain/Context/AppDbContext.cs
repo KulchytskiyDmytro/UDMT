@@ -8,13 +8,12 @@ public class AppDbContext : DbContext
     public DbSet<Character> Characters { get; set; }
     public DbSet<CharacterClass> CharacterClasses { get; set; }
     
-    
-    
     public DbSet<Race> Races { get; set; }
     public DbSet<RaceRelation> RaceRelations { get; set; }
     public DbSet<RaceAttributeBonus> RaceAttributeBonusEnumerable { get; set; }
     
     
+    public DbSet<CharacterSavingThrow> CharacterSavingThrows { get; set; }
     
     public DbSet<CharacterAttribute> CharacterAttributes { get; set; }
     
