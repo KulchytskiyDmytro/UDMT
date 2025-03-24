@@ -1,11 +1,13 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
+using NeerCore.DependencyInjection;
 using UDMT.Application.DTO;
 using UDMT.Domain.Context;
 using UDMT.Domain.Entity;
 
-namespace UDMT.Application.Services;
+namespace UDMT.Application.Services.CharGenServices;
 
+[Service]
 public class SubraceService : ISubraceService
 {
     private readonly AppDbContext _context;

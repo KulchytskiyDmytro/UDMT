@@ -1,5 +1,5 @@
+using NeerCore.DependencyInjection.Extensions;
 using UDMT.Application.Configure;
-using UDMT.Application.Services;
 using UDMT.Application.Services.CharGenServices;
 using UDMT.Domain;
 
@@ -26,13 +26,12 @@ static void ConfigureBuilder(WebApplicationBuilder builder)
     builder.Services.AddControllers(); 
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen(o => { o.UseAllOfToExtendReferenceSchemas(); });
-
+    
     builder.Services.AddDatabase(builder.Configuration);
-            
-    builder.Services.AddScoped<ICharacterService, CharacterService>();
-    builder.Services.AddScoped<IRaceService, RaceService>();
-    builder.Services.AddScoped<ISubraceService, SubraceService>();
-    builder.Services.AddScoped<ISavingThrowService, SavingThrowService>();
+
+    // Services registration
+    builder.Services.AddAllServices(o => o.ResolveInternalImplementations = true);
+
 }
 
 static void ConfigureWebApp(WebApplication app)

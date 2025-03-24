@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using Mapster;
+﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+using NeerCore.DependencyInjection;
 using UDMT.Application.DTO;
-using UDMT.Application.Services.CharGenServices;
 using UDMT.Domain.Context;
 using UDMT.Domain.Entity;
 
-namespace UDMT.Application.Services;
+namespace UDMT.Application.Services.CharGenServices;
 
+[Service]
 public class CharacterService : ICharacterService
 {
     private readonly AppDbContext _context;
@@ -64,10 +63,7 @@ public class CharacterService : ICharacterService
 
         await GenerateAttributesAsync(character.Id, characterDto.RaceId);
         
-        await _savingThrowService.InitializeForCharacterAsync(
-            character.Id, 
-            characterDto.CharacterClass.SavingThrowProficiencies
-            );
+        await _savingThrowService.InitializeForCharacterAsync(character.Id, characterDto.CharacterClass.SavingThrowProficiencies);
         
         return character.Id;
     }

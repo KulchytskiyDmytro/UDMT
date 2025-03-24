@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
+using NeerCore.DependencyInjection;
 using UDMT.Application.DTO;
 using UDMT.Application.Helpers;
 using UDMT.Domain.Context;
@@ -7,6 +8,7 @@ using UDMT.Domain.Entity;
 
 namespace UDMT.Application.Services.CharGenServices;
 
+[Service]
 public class SavingThrowService : ISavingThrowService
 {
     private readonly AppDbContext _context;

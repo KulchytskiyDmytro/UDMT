@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UDMT.Application.DTO;
 using UDMT.Application.Services;
+using UDMT.Application.Services.CharGenServices;
 
 namespace UDMT.Api.Controllers;
 
