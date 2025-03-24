@@ -1,56 +1,50 @@
-# Ignore secret configuration
-#appsettings.Secrets.json
-
-.idea
-
-# JetBrains Rider cache
-riderModule.iml
-/_ReSharper.Caches/
-#.idea/
-.fleet/
-*.dotCover
-_TeamCity*
-
-# Visual Studio cahche
-.vs/
-*.[Cc]ache
-
-# VS Code cahche
-.vscode/
-
-# Log files
-*.log
-
-# .NET Build results
+# ========== Build Artifacts ==========
 [Bb]in/
 [Oo]bj/
+*.exe
+*.dll
+*.pdb
 
-# User-specific files
-*.suo
+# ========== Rider ==========
+.idea/
+*.sln.iml
+# Rider-specific files
+/.idea/
+/.idea/*
+!/.idea/codeStyles/
+!/.idea/runConfigurations/
+
+# ========== Visual Studio ==========
+.vscode/
 *.user
-*.userosscache
+*.suo
 *.sln.docstates
-*.userprefs
+*.userosscache
 
-# Node.JS dependencies
-node_modules/
+# ========== Logs ==========
+*.log
 
-# production
-/build
+# ========== App Settings ==========
+/UDMP.Api/appsettings.Development.json
+/UDMP.Api/appsettings.Local.json
+/UDMP.Api/appsettings.*.example.json
 
-# System Files
-.DS_Store
-Thumbs.db
-
-# Local environments
-/UDMP.Api/appsettings.json
-/UDMP.Api/appsettings.*.json
+# ========== Environment Variables (.env files) ==========
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-.angular/
+# ========== Database Files ==========
+*.mdf
+*.ldf
+*.ndf
+*.db
 
-/UDMP.Api/Properties
-event-plus-19-firebase.json
+# ========== EF Core Migrations ==========
+migrations/
+
+# ========== OS / System Files ==========
+.DS_Store
+Thumbs.db
