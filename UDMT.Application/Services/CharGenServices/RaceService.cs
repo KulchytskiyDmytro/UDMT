@@ -18,7 +18,7 @@ public class RaceService : IRaceService
         _context = context;
     }
     
-    public async Task<List<RaceDto>> GetRacesAsync()
+    public async Task<ICollection<RaceDto>> GetRacesAsync()
     {
         return await _context.Races
             .ProjectToType<RaceDto>().ToListAsync();

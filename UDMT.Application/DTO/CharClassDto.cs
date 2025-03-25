@@ -2,11 +2,11 @@
 
 namespace UDMT.Application.DTO;
 
-public class CharacterClassDto
+public class CharClassDto
 {
     public int Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     
-    public ICollection<AttributeType> SavingThrowProficiencies { get; set; }
+    public ICollection<AttributeType>? SavingThrowProficiencies { get; set; }
 }

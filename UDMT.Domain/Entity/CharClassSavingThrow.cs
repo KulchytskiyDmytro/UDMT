@@ -1,12 +1,12 @@
 ﻿namespace UDMT.Domain.Entity;
 
-public class ClassSavingThrow
+public class CharClassSavingThrow
 {
     public int Id { get; set; }
     
-    public int CharacterClassId { get; set; }
+    public int CharClassId { get; set; }
     
-    public CharacterClass CharacterClass { get; set; }
+    public CharClass CharClass { get; set; }
 
     public AttributeType AttributeType { get; set; }
 }

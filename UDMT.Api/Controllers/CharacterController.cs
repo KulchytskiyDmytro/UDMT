@@ -22,7 +22,7 @@ public class CharacterController : ControllerBase
     }
 
     [HttpGet("get")]
-    public async Task<List<CharacterDto>> GetCharacter()
+    public async Task<ICollection<CharacterDto>> GetCharacter()
     {
         return await _characterService.GetCharactersAsync();
     }

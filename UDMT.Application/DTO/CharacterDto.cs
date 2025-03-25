@@ -10,8 +10,7 @@ public class CharacterDto
     
     public int RaceId { get; set; }
     
-    public int CharacterClassId { get; set; }
-    public CharacterClassDto CharacterClass { get; set; }
+    public int CharClassId { get; set; }
     
     public int ProficencyBonus { get; set; }
     

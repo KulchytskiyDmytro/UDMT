@@ -23,7 +23,7 @@ public class RaceController : ControllerBase
     }
     
     [HttpGet("get")]
-    public async Task<List<RaceDto>> GetRace()
+    public async Task<ICollection<RaceDto>> GetRace()
     {
         return await _raceService.GetRacesAsync();
     }

@@ -5,11 +5,10 @@ public class Character
     public int Id { get; set; }
     public string Name { get; set; }
     public int RaceId { get; set; }
-    public int CharacterClassId { get; set; }
-    public int ProficencyBonus { get; set; }
+    public int CharClassId { get; set; }
     
     public Race Race { get; set; }
-    public CharacterClass CharacterClass { get; set; }
+    public CharClass CharClass { get; set; }
 
     public ICollection<CharacterSavingThrow> SavingThrows { get; set; } = new List<CharacterSavingThrow>();
     

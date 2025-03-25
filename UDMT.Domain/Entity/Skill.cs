@@ -9,4 +9,5 @@ public class Skill
     public AttributeType AttributeType { get; set; }
     
     public ICollection<CharacterSkill> CharacterSkills { get; set; }
+    public ICollection<ClassSkill> ClassSkills { get; set; }
 }

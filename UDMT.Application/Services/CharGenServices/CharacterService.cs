@@ -20,18 +20,19 @@ public class CharacterService : ICharacterService
         _savingThrowService = savingThrowService;
     }
     
-    public async Task<List<CharacterDto>> GetCharactersAsync()
+    public async Task<ICollection<CharacterDto>> GetCharactersAsync()
     {
         var characters = await _context.Characters
             .Include(p => p.Attributes)
-            .Include(p => p.CharacterClass)
+            .Include(p => p.CharClass)
             .ThenInclude(pc => pc.SavingThrowProficiencies)
             .ToListAsync(); // <- обычный fetch
 
         var charactersAsync = characters.Adapt<List<CharacterDto>>();
-
+        
         foreach (var dto in charactersAsync)
         {
+            dto.CharacterAttributes = await GenerateAttributesAsync(dto.Id, dto.RaceId);
             dto.SavingThrowDtos = await _savingThrowService.GetSavingThrowsAsync(dto.Id);
         }
 
@@ -42,7 +43,7 @@ public class CharacterService : ICharacterService
     {
         var character = await _context.Characters
             .Include(p => p.Attributes)
-            .Include(p => p.CharacterClass)
+            .Include(p => p.CharClass)
             .ThenInclude(pc => pc.SavingThrowProficiencies)
             .FirstOrDefaultAsync(p => p.Id == characterId);
 
@@ -50,8 +51,11 @@ public class CharacterService : ICharacterService
             return null;
 
         var dto = character.Adapt<CharacterDto>();
+        
+        await GenerateAttributesAsync(characterId, dto.RaceId);
+        
         dto.SavingThrowDtos = await _savingThrowService.GetSavingThrowsAsync(characterId);
-
+        
         return dto;
     }
 
@@ -63,12 +67,12 @@ public class CharacterService : ICharacterService
 
         await GenerateAttributesAsync(character.Id, characterDto.RaceId);
         
-        await _savingThrowService.InitializeForCharacterAsync(character.Id, characterDto.CharacterClass.SavingThrowProficiencies);
+        await _savingThrowService.InitializeForCharacterAsync(character.Id, characterDto.CharClassId);
         
         return character.Id;
     }
 
-    public async Task GenerateAttributesAsync(int characterId, int raceId)
+    public async Task<ICollection<CharacterAttributeDto>> GenerateAttributesAsync(int characterId, int raceId)
     {
         var character = await _context.Characters
             .Include(p => p.Attributes)
@@ -79,7 +83,7 @@ public class CharacterService : ICharacterService
 
         character.Attributes.Clear(); // на случай перегенерации
 
-        var raceBonuses = await _context.RaceAttributeBonusEnumerable
+        var raceBonuses = await _context.RaceAttributeBonuses
             .Where(rb => rb.RaceId == raceId)
             .ToListAsync();
 
@@ -94,6 +98,8 @@ public class CharacterService : ICharacterService
         }
 
         await _context.SaveChangesAsync();
+
+        return character.Attributes.Adapt<ICollection<CharacterAttributeDto>>();
     }
     
 

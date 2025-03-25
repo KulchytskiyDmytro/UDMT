@@ -22,54 +22,79 @@ public class SavingThrowService : ISavingThrowService
     /// <summary>
     /// Get SavingThrow
     /// </summary>
-    public async Task<ICollection<CharacterSavingThrowDto>> GetSavingThrowsAsync(int characterId)
-    {
-        var character = await _context.Characters
-            .Include(c => c.Attributes)
-            .Include(c => c.SavingThrows)
-            .FirstOrDefaultAsync(c => c.Id == characterId);
+public async Task<ICollection<CharacterSavingThrowDto>> GetSavingThrowsAsync(int characterId)
+{
+    
+    var character = await _context.Characters
+        .Include(c => c.CharClass)
+            .ThenInclude(cc => cc.SavingThrowProficiencies)
+        .Include(c => c.SavingThrows)
+        .FirstOrDefaultAsync(c => c.Id == characterId);
 
-        if (character is null)
-            throw new Exception($"Character with Id={characterId} not found.");
+    if (character == null)
+        throw new Exception($"Character with Id={characterId} not found.");
 
-        var proficiencyBonus = character.ProficencyBonus;
-
-        return character.SavingThrows.Select(st =>
+    var proficiencyBonus = character.CharClass.ProficencyBonus;
+    
+    var classProficiencies = character.CharClass.SavingThrowProficiencies
+        .Select(p => p.AttributeType);
+    
+    var attributeValues = await _context.CharacterAttributes
+        .Where(a => a.CharacterId == characterId)
+        .ToDictionaryAsync(a => a.AttributeType, a => a.Value);
+    
+    var result = Enum.GetValues<AttributeType>()
+        .Select(attrType =>
         {
-            var score = character.Attributes.FirstOrDefault(a => a.AttributeType == st.AttributeType)?.Value ?? 10;
-            var modifier = AttributeUtils.GetModifier(score);
+            var baseValue = attributeValues.TryGetValue(attrType, out var value) ? value : 10;
+            
+            // NOTE: For future (Items, spells ect. can add or remove values)
+            var totalScore = baseValue;
+            
+            var modifier = AttributeUtils.GetModifier(totalScore);
+
+            var existing = character.SavingThrows
+                .FirstOrDefault(st => st.AttributeType == attrType);
 
             var dto = new CharacterSavingThrowDto
             {
-                Attribute = st.AttributeType,
-                IsProficient = st.IsProficient,
+                Attribute = attrType,
+                IsProficient = classProficiencies.Contains(attrType),
                 ProficiencyBonus = proficiencyBonus,
                 AttributeModifier = modifier,
-                BonusOverride = st.BonusOverride,
+                BonusOverride = existing?.BonusOverride ?? 0
             };
 
-            dto.Total = AttributeUtils.GetSavingThrowBonus(score, dto);
-            
+            dto.Total = AttributeUtils.GetSavingThrowBonus(totalScore, dto);
+
             return dto;
-        }).ToList();
-    }
+        })
+        .ToList();
+
+    return result;
+}
 
     /// <summary>
     /// Create SavingThrow
     /// </summary>
-    public async Task InitializeForCharacterAsync(int characterId, IEnumerable<AttributeType> proficientAttributes)
+    public async Task InitializeForCharacterAsync(int charId, int charClassId)
     {
         var existing = await _context.CharacterSavingThrows
-            .Where(x => x.CharacterId == characterId)
+            .Where(x => x.CharacterId == charId)
             .ToListAsync();
         
         if (existing.Any()) return;
 
-        var profs = proficientAttributes.ToHashSet();
+        var classProficiencies = await _context.CharClassSavingThrows
+            .Where(x => x.CharClassId == charClassId)
+            .Select(x => x.AttributeType)
+            .ToListAsync();
+        
+        var profs = classProficiencies.ToHashSet();
         
         var savingThrows = Enum.GetValues<AttributeType>().Select(attr => new CharacterSavingThrow
         {
-            CharacterId = characterId,
+            CharacterId = charId,
             AttributeType = attr,
             IsProficient = profs.Contains(attr),
             BonusOverride = 0
