@@ -1,4 +1,6 @@
-﻿namespace UDMT.Domain.Entity;
+﻿using UDMT.Domain.Entity.Shared;
+
+namespace UDMT.Domain.Entity.Races;
 
 public class RaceAttributeBonus
 {

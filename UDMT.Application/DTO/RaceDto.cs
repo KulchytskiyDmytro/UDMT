@@ -1,6 +1,4 @@
-﻿using UDMT.Domain.Entity;
-
-namespace UDMT.Application.DTO;
+﻿namespace UDMT.Application.DTO;
 
 public class RaceDto
 {

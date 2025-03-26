@@ -5,6 +5,8 @@ using UDMT.Application.DTO;
 using UDMT.Application.Helpers;
 using UDMT.Domain.Context;
 using UDMT.Domain.Entity;
+using UDMT.Domain.Entity.Characters;
+using UDMT.Domain.Entity.Shared;
 
 namespace UDMT.Application.Services.CharGenServices;
 
@@ -18,61 +20,60 @@ public class SavingThrowService : ISavingThrowService
         _context = context;
     }
     
-    
     /// <summary>
     /// Get SavingThrow
     /// </summary>
-public async Task<ICollection<CharacterSavingThrowDto>> GetSavingThrowsAsync(int characterId)
-{
-    
-    var character = await _context.Characters
-        .Include(c => c.CharClass)
-            .ThenInclude(cc => cc.SavingThrowProficiencies)
-        .Include(c => c.SavingThrows)
-        .FirstOrDefaultAsync(c => c.Id == characterId);
+    public async Task<ICollection<CharacterSavingThrowDto>> GetSavingThrowsAsync(int characterId)
+    {
+        
+        var character = await _context.Characters
+            .Include(c => c.CharClass)
+                .ThenInclude(cc => cc.SavingThrowProficiencies)
+            .Include(c => c.SavingThrows)
+            .FirstOrDefaultAsync(c => c.Id == characterId);
 
-    if (character == null)
-        throw new Exception($"Character with Id={characterId} not found.");
+        if (character == null)
+            throw new Exception($"Character with Id={characterId} not found.");
 
-    var proficiencyBonus = character.CharClass.ProficencyBonus;
-    
-    var classProficiencies = character.CharClass.SavingThrowProficiencies
-        .Select(p => p.AttributeType);
-    
-    var attributeValues = await _context.CharacterAttributes
-        .Where(a => a.CharacterId == characterId)
-        .ToDictionaryAsync(a => a.AttributeType, a => a.Value);
-    
-    var result = Enum.GetValues<AttributeType>()
-        .Select(attrType =>
-        {
-            var baseValue = attributeValues.TryGetValue(attrType, out var value) ? value : 10;
-            
-            // NOTE: For future (Items, spells ect. can add or remove values)
-            var totalScore = baseValue;
-            
-            var modifier = AttributeUtils.GetModifier(totalScore);
-
-            var existing = character.SavingThrows
-                .FirstOrDefault(st => st.AttributeType == attrType);
-
-            var dto = new CharacterSavingThrowDto
+        var proficiencyBonus = character.CharClass.ProficencyBonus;
+        
+        var classProficiencies = character.CharClass.SavingThrowProficiencies
+            .Select(p => p.AttributeType);
+        
+        var attributeValues = await _context.CharacterAttributes
+            .Where(a => a.CharacterId == characterId)
+            .ToDictionaryAsync(a => a.AttributeType, a => a.Value);
+        
+        var result = Enum.GetValues<AttributeType>()
+            .Select(attrType =>
             {
-                Attribute = attrType,
-                IsProficient = classProficiencies.Contains(attrType),
-                ProficiencyBonus = proficiencyBonus,
-                AttributeModifier = modifier,
-                BonusOverride = existing?.BonusOverride ?? 0
-            };
+                var baseValue = attributeValues.TryGetValue(attrType, out var value) ? value : 10;
+                
+                // NOTE: For future (Items, spells ect. can add or remove values)
+                var totalScore = baseValue;
+                
+                var modifier = AttributeUtils.GetModifier(totalScore);
 
-            dto.Total = AttributeUtils.GetSavingThrowBonus(totalScore, dto);
+                var existing = character.SavingThrows
+                    .FirstOrDefault(st => st.AttributeType == attrType);
 
-            return dto;
-        })
-        .ToList();
+                var dto = new CharacterSavingThrowDto
+                {
+                    Attribute = attrType,
+                    IsProficient = classProficiencies.Contains(attrType),
+                    ProficiencyBonus = proficiencyBonus,
+                    AttributeModifier = modifier,
+                    BonusOverride = existing?.BonusOverride ?? 0
+                };
 
-    return result;
-}
+                dto.Total = dto.GetSavingThrowBonus(totalScore);
+
+                return dto;
+            })
+            .ToList();
+
+        return result;
+    }
 
     /// <summary>
     /// Create SavingThrow
@@ -101,14 +102,13 @@ public async Task<ICollection<CharacterSavingThrowDto>> GetSavingThrowsAsync(int
         });
         
         await _context.CharacterSavingThrows.AddRangeAsync(savingThrows);
-        await _context.SaveChangesAsync();
     }
 
     
     /// <summary>
     /// Update SavingThrow
     /// </summary>
-    public async Task UpdateAsync(int characterId, CharacterSavingThrowDto dto)
+    public async Task UpdateSavingThrowAsync(int characterId, CharacterSavingThrowDto dto)
     {
         var entity = await _context.CharacterSavingThrows
             .FirstOrDefaultAsync(x => x.CharacterId == characterId && x.AttributeType == dto.Attribute);
@@ -119,6 +119,28 @@ public async Task<ICollection<CharacterSavingThrowDto>> GetSavingThrowsAsync(int
         entity.IsProficient = dto.IsProficient;
         entity.BonusOverride = dto.BonusOverride;
 
-        await _context.SaveChangesAsync();
+        
+    }
+    
+    /// <summary>
+    /// Shared SavingThrow Get + Update
+    /// </summary>
+    public async Task RecalculateSavingThrowsAsync(Character character)
+    {
+        var recalculated = await GetSavingThrowsAsync(character.Id);
+
+        var existing = await _context.CharacterSavingThrows
+            .Where(x => x.CharacterId == character.Id)
+            .ToListAsync();
+
+        foreach (var dto in recalculated)
+        {
+            var entity = existing.FirstOrDefault(e => e.AttributeType == dto.Attribute);
+            if (entity is not null)
+            {
+                entity.IsProficient = dto.IsProficient;
+                entity.BonusOverride = dto.BonusOverride;
+            }
+        }
     }
 }

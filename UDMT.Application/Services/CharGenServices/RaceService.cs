@@ -4,6 +4,7 @@ using NeerCore.DependencyInjection;
 using UDMT.Application.DTO;
 using UDMT.Domain.Context;
 using UDMT.Domain.Entity;
+using UDMT.Domain.Entity.Races;
 
 namespace UDMT.Application.Services.CharGenServices;
 
@@ -17,7 +18,7 @@ public class RaceService : IRaceService
     {
         _context = context;
     }
-    
+
     public async Task<ICollection<RaceDto>> GetRacesAsync()
     {
         return await _context.Races
@@ -50,12 +51,11 @@ public class RaceService : IRaceService
 
         foreach (var relation in raceDto.RaceRelations ?? Enumerable.Empty<RaceRelationDto>())
         {
-            // Обнуляем "нулевые" Id из JSON/UI
             if (relation.SubraceId == 0)
                 relation.SubraceId = null;
         }
         
-        raceDto.Adapt(race); // Mapster: переносим все значения из DTO в сущность
+        raceDto.Adapt(race);
 
         await _context.SaveChangesAsync();
     }

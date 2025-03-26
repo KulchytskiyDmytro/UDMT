@@ -16,7 +16,7 @@ public static class AttributeUtils
     /// <summary>
     /// Calculates total saving throw bonus.
     /// </summary>
-    public static int GetSavingThrowBonus(int score, CharacterSavingThrowDto savingThrowDto)
+    public static int GetSavingThrowBonus(this CharacterSavingThrowDto savingThrowDto, int score)
     {
         int modifier = GetModifier(score);
         int res = modifier + (savingThrowDto.IsProficient ? savingThrowDto.ProficiencyBonus : 0) + savingThrowDto.BonusOverride;

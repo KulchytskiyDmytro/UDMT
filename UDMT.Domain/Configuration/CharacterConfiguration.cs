@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UDMT.Domain.Entity;
+using UDMT.Domain.Entity.Characters;
 
 namespace UDMT.Domain.Configuration;
 

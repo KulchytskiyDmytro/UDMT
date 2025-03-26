@@ -1,4 +1,4 @@
-﻿using UDMT.Domain.Entity;
+﻿using UDMT.Domain.Entity.Shared;
 
 namespace UDMT.Application.DTO;
 

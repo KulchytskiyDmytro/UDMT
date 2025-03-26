@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UDMT.Domain.Entity;
+using UDMT.Domain.Entity.Classes;
 
 namespace UDMT.Domain.Configuration;
 
-public class ClassSkillConfiguration: IEntityTypeConfiguration<ClassSkill>
+public class ClassSkillConfiguration : IEntityTypeConfiguration<ClassSkill>
 {
     public void Configure(EntityTypeBuilder<ClassSkill> builder)
     {

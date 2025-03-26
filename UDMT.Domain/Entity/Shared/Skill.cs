@@ -1,4 +1,7 @@
-﻿namespace UDMT.Domain.Entity;
+﻿using UDMT.Domain.Entity.Characters;
+using UDMT.Domain.Entity.Classes;
+
+namespace UDMT.Domain.Entity.Shared;
 
 public class Skill
 {

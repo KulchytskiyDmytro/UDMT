@@ -4,6 +4,7 @@ using NeerCore.DependencyInjection;
 using UDMT.Application.DTO;
 using UDMT.Domain.Context;
 using UDMT.Domain.Entity;
+using UDMT.Domain.Entity.Races;
 
 namespace UDMT.Application.Services.CharGenServices;
 
@@ -11,33 +12,18 @@ namespace UDMT.Application.Services.CharGenServices;
 public class SubraceService : ISubraceService
 {
     private readonly AppDbContext _context;
-    private IRaceService _raceService;
 
     public SubraceService(AppDbContext context)
     {
         _context = context;
     }
-
+    
+    // TODO: Workout problem with DTO in Swagger
     public async Task<List<SubraceDto>> GetSubRacesAsync()
     {
         return await _context.RaceRelations
             .Where(r => r.Subrace != null)
-            .Select(r => new SubraceDto
-            {
-                Id = r.Subrace.Id,
-                Name = r.Subrace.Name,
-                Description = r.Subrace.Description,
-                IsHomebrew = r.Subrace.IsHomebrew,
-                ParentRaceId = r.RaceId,
-                AttributeBonuses = r.Subrace.AttributeBonuses
-                    .Select(b => new RaceAttributeBonusDto
-                    {
-                        Id = b.Id,
-                        AttributeType = b.AttributeType,
-                        Value = b.Value,
-                        RaceId = b.RaceId
-                    }).ToList()
-            })
+            .ProjectToType<SubraceDto>()
             .ToListAsync();
     }
 

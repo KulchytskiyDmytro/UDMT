@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UDMT.Domain.Entity;
+namespace UDMT.Domain.Entity.Races;
 
 public class RaceRelation
 {

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using UDMT.Domain.Entity.Shared;
 
-namespace UDMT.Domain.Entity;
+namespace UDMT.Domain.Entity.Characters;
 
 public class CharacterSkill
 {

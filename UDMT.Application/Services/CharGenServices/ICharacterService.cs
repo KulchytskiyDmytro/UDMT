@@ -9,8 +9,6 @@ public interface ICharacterService
     
     Task<int> AddNewCharacter(CharacterDto characterDto);
     
-    Task<ICollection<CharacterAttributeDto>> GenerateAttributesAsync(int characterId, int raceId);
-    
     Task UpdateCharacterAsync(CharacterDto characterDto);
     Task DeleteCharacterAsync(int characterId);
 }

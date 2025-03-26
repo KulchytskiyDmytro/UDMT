@@ -1,4 +1,4 @@
-﻿namespace UDMT.Domain.Entity;
+﻿namespace UDMT.Domain.Entity.Shared;
 
 public enum AttributeType
 {

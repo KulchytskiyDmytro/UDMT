@@ -4,6 +4,7 @@ using NeerCore.DependencyInjection;
 using UDMT.Application.DTO;
 using UDMT.Domain.Context;
 using UDMT.Domain.Entity;
+using UDMT.Domain.Entity.Classes;
 
 namespace UDMT.Application.Services.CharGenServices.Class;
 
@@ -20,7 +21,9 @@ public class ClassService : IClassService
     public async Task<ICollection<CharClassDto>> GetAllClassesAsync()
     {
         var classes = await _context.CharClasses
-            .Include(st => st.SavingThrowProficiencies)
+            .Include(ch => ch.SavingThrowProficiencies)
+            .Include(ch => ch.Subclasses)
+            .Include(ch => ch.Features)
             .ToListAsync();
 
         return classes.Adapt<List<CharClassDto>>();

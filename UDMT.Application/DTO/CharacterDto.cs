@@ -1,6 +1,4 @@
-﻿using UDMT.Domain.Entity;
-
-namespace UDMT.Application.DTO;
+﻿namespace UDMT.Application.DTO;
 
 public class CharacterDto
 {
@@ -12,9 +10,17 @@ public class CharacterDto
     
     public int CharClassId { get; set; }
     
+    public int? SubclassId { get; set; } 
+    
+    public int MaxHitPoints { get; set; }
+    public int CurrentHitPoints { get; set; }
+    
     public int ProficencyBonus { get; set; }
+    
+    public CharClassDto CharClass { get; set; } = null!;
     
     public ICollection<CharacterAttributeDto> CharacterAttributes { get; set; } = new List<CharacterAttributeDto>();
     
-    public ICollection<CharacterSavingThrowDto> SavingThrowDtos { get; set; } = new List<CharacterSavingThrowDto>();
+    public ICollection<CharacterSavingThrowDto> SavingThrows { get; set; } = new List<CharacterSavingThrowDto>();
+    
 }
