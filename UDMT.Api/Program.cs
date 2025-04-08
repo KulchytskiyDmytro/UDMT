@@ -1,6 +1,5 @@
 using NeerCore.DependencyInjection.Extensions;
 using UDMT.Application.Configure;
-using UDMT.Application.Services.CharGenServices;
 using UDMT.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +11,6 @@ ConfigureWebApp(app);
 app.UseRouting();
 app.MapControllers();
 app.Run();
-
 
 
 static void ConfigureBuilder(WebApplicationBuilder builder)

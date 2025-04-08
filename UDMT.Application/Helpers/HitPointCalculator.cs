@@ -1,18 +1,33 @@
-﻿using UDMT.Application.DTO;
-using UDMT.Domain.Entity.Characters;
+﻿using UDMT.Domain.Entity.Char;
 using UDMT.Domain.Entity.Shared;
 
 namespace UDMT.Application.Helpers;
 
 public static class HitPointCalculator
 {
-    public static int GetConMod(int score)
+    public static void ApplyHp(this Character character)
+    {
+        var conBonus = character.Attributes
+            .FirstOrDefault(a => a.AttributeType == AttributeType.Constitution);
+
+        var finalBonus = conBonus?.BonusOverride ?? conBonus?.BonusModifier ?? 0;
+
+        int conMod = GetConMod(finalBonus);
+
+        var charClassLevel = character.ClassLevels
+            .FirstOrDefault(c => c.CharacterId == character.Id);
+        
+        character.MaxHp = CalculateHpByLevel(charClassLevel.CharClass.HpDiceType, conMod, charClassLevel.Level);
+        character.CurrentHp = character.MaxHp; // temp solution 
+    }
+    
+    private static int GetConMod(int score)
         => AttributeUtils.GetModifier(score);
 
-    public static int CalculateLevel1Hp(HpDieType hitDie, int conMod)
-        => (int)hitDie + conMod;
-    
-    public static int CalculateHpByLevel(HpDieType hitDie, int conMod, int level = 1)
+    private static int CalculateLevel1Hp(HpDiceType hpDice, int conMod)
+        => (int)hpDice + conMod;
+
+    private static int CalculateHpByLevel(HpDiceType hitDie, int conMod, int level)
     {
         if (level <= 1)
             return CalculateLevel1Hp(hitDie, conMod);
@@ -26,23 +41,4 @@ public static class HitPointCalculator
         return totalHp;
     }
 
-    public static void ApplyHp(this Character character, int level = 1)
-    {
-        var conScore = character.Attributes
-            .FirstOrDefault(a => a.AttributeType == AttributeType.Constitution)?.Value ?? 10;
-
-        int conMod = GetConMod(conScore);
-        character.MaxHitPoints = CalculateHpByLevel(character.CharClass.HitDie, conMod, level);
-        character.CurrentHitPoints = character.MaxHitPoints;
-    }
-
-    public static void ApplyHp(this CharacterDto character, int level = 1)
-    {
-        var conScore = character.CharacterAttributes
-            .FirstOrDefault(a => a.AttributeType == AttributeType.Constitution)?.Value ?? 10;
-
-        int conMod = GetConMod(conScore);
-        character.MaxHitPoints = CalculateHpByLevel(character.CharClass.HitDie, conMod, level);
-        character.CurrentHitPoints = character.MaxHitPoints;
-    }
 }
