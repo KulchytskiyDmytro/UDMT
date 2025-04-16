@@ -1,4 +1,5 @@
 ﻿using UDMT.Application.DTO;
+using UDMT.Domain.Entity.Tech.Mod;
 
 namespace UDMT.Application.Helpers;
 
@@ -14,17 +15,23 @@ public static class AttributeUtils
     }
     
     /// <summary>
-    /// Calculates total saving throw bonus.
+    /// Calculates saving throw bonus based on Attribute and Prof
     /// </summary>
-    public static int GetSavingThrowBonus(this CharacterSavingThrowDto savingThrowDto, int score)
+    public static int GetSavingThrowBonus(this CharSavingThrowDto savingThrowDto, int score, int proficiencyBonus)
     {
-        int modifier = GetModifier(score);
-        int res = modifier + (savingThrowDto.IsProficient ? savingThrowDto.BonusModifier : 0) + savingThrowDto.BonusOverride;
+        int attributeModifier = GetModifier(score);
+        
+        int total = attributeModifier 
+                    + (savingThrowDto.IsProficient ? proficiencyBonus : 0);
+        
+        int res = savingThrowDto?.BonusOverride ?? total;
+        
         return res;
     }
     
     /// <summary>
     /// Calculates total skill bonus.
+    /// (It's raw method so it doesn't work right now)
     /// </summary>
     public static int GetSkillBonus(int score, bool isProficient, bool hasExpertise, int proficiencyBonus, int bonusOverride = 0)
     {

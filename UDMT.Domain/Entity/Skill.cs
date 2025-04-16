@@ -1,10 +1,10 @@
 ﻿using UDMT.Domain.Entity.Shared;
 
-namespace UDMT.Domain.Entity.Char;
+namespace UDMT.Domain.Entity;
 
 public class Skill
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     
     public string Name { get; set; }
         

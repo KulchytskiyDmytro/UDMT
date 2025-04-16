@@ -4,7 +4,7 @@ namespace UDMT.Domain.Entity.CharClass_Subclass;
 
 public class CharSubclass
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     
     public string Name { get; set; }
     
@@ -14,7 +14,7 @@ public class CharSubclass
     
     public bool IsHomebrew { get; set; }
     
-    public Guid CharClassId { get; set; }
+    public int CharClassId { get; set; }
     
     public CharClass CharClass { get; set; }
     

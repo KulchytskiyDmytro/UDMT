@@ -2,7 +2,7 @@
 
 public class SubRace
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     public string Name { get; set; }
     
@@ -10,7 +10,7 @@ public class SubRace
     
     public bool IsHomebrew { get; set; }
     
-    public Guid RaceId { get; set; }
+    public int RaceId { get; set; }
     
-    public Race_Subrace.Race Race { get; set; }
+    public Race Race { get; set; }
 }

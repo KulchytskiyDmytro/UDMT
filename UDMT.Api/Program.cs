@@ -1,6 +1,7 @@
 using NeerCore.DependencyInjection.Extensions;
 using UDMT.Application.Configure;
 using UDMT.Domain;
+using UDMT.Domain.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureBuilder(builder);
@@ -28,6 +29,7 @@ static void ConfigureBuilder(WebApplicationBuilder builder)
     builder.Services.AddDatabase(builder.Configuration);
 
     // Services registration
+    builder.Services.AddScoped<IAppDbContext, AppDbContext>();
     builder.Services.AddAllServices(o => o.ResolveInternalImplementations = true);
 
 }

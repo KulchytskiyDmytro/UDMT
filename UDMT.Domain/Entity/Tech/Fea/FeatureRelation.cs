@@ -4,7 +4,7 @@ public class FeatureRelation
 {
     public int Id { get; set; }
     
-    public Guid SourceId { get; set; }
+    public int SourceId { get; set; }
     
     public FeatureSourceType SourceType { get; set; }
     

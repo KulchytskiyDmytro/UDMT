@@ -10,9 +10,9 @@ public class CharAttribute
     
     public int BonusModifier { get; set; }
     
-    public int BonusOverride { get; set; }
+    public int? BonusOverride { get; set; }
     
-    public Guid CharacterId { get; set; }
+    public int CharacterId { get; set; }
     
     public Character Character { get; set; }
 }

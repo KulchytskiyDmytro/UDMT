@@ -4,7 +4,7 @@ namespace UDMT.Domain.Entity.Magic;
 
 public class Spell
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     
     public int CharSpellId { get; set; }
     

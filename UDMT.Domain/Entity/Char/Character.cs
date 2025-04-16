@@ -5,7 +5,9 @@ namespace UDMT.Domain.Entity.Char;
 
 public class Character
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
+    
+    public string Name { get; set; }
     
     public string? PlayerName { get; set; }
     
@@ -18,11 +20,13 @@ public class Character
     public string? Deity { get; set; }
         
     public string? Backstory { get; set; }
+        
+    public int ProficiencyBonus { get; set; }
     
-    public Guid RaceId { get; set; }
+    public int RaceId { get; set; }
     public Race Race { get; set; }
     
-    public Guid BackgroundId { get; set; }
+    public int BackgroundId { get; set; }
     public Background Background { get; set; }
 
     public ICollection<CharClassLevel> ClassLevels { get; set; }

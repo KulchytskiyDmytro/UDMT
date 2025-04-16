@@ -1,8 +1,8 @@
-﻿namespace UDMT.Domain.Entity.Char;
+﻿namespace UDMT.Domain.Entity;
 
 public class Feat
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     
     public string Name { get; set; }
     

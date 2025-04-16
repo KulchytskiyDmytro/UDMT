@@ -6,13 +6,15 @@ public class Modifier
 {
     public int Id { get; set; }
     
+    public string? Name { get; set; }
+    
+    public string? Description { get; set; }
+    
     public ModifierType ModifierType { get; set; }
     
     public AttributeType AttributeType { get; set; }
     
-    public int Value { get; set; }
-    
-    public string? Name { get; set; }
-    
-    public string? Description { get; set; }
+    public int? Value { get; set; }
+
+    public AdvantageType? AdvantageType { get; set; }
 }

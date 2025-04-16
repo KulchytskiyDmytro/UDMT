@@ -6,7 +6,7 @@ public class SpellcastingProgression
 {
     public int Id { get; set; }
     
-    public Guid CharClassId { get; set; }
+    public int CharClassId { get; set; }
     
     public CharClass CharClass { get; set; }
     
