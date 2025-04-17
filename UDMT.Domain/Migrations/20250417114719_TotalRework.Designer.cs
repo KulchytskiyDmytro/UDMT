@@ -11,7 +11,7 @@ using UDMT.Domain.Context;
 namespace UDMT.Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250416120313_TotalRework")]
+    [Migration("20250417114719_TotalRework")]
     partial class TotalRework
     {
         /// <inheritdoc />
@@ -67,6 +67,12 @@ namespace UDMT.Domain.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ValueOverride")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

@@ -66,6 +66,12 @@ namespace UDMT.Domain.Migrations
                     b.Property<int>("CharacterId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ValueOverride")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CharacterId");

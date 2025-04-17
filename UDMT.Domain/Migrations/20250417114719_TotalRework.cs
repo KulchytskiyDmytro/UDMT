@@ -371,6 +371,8 @@ namespace UDMT.Domain.Migrations
                     AttributeType = table.Column<int>(type: "int", nullable: false),
                     BonusModifier = table.Column<int>(type: "int", nullable: false),
                     BonusOverride = table.Column<int>(type: "int", nullable: true),
+                    Value = table.Column<int>(type: "int", nullable: false),
+                    ValueOverride = table.Column<int>(type: "int", nullable: true),
                     CharacterId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

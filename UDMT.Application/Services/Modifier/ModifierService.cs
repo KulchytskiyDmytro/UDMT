@@ -46,7 +46,7 @@ public class ModifierService : IModifierService
 
     public async Task DeleteModifierAsync(int modifierId, CancellationToken ct)
     {
-        var modifier = _dbContext.Set<Mod>()
+        var modifier = await _dbContext.Set<Mod>()
             .FirstOrDefaultAsync(m => m.Id == modifierId, ct);
         
         if (modifier is null) throw new NotFoundException($"There is no Modifiers with such Id: {modifierId} ");

@@ -1,6 +1,6 @@
 ﻿namespace UDMT.Application.DTO;
 
-public class GetBackgroundsDto
+public class GetBackgroundsDto : IModifierContainer
 {
     public int Id { get; set; }
     

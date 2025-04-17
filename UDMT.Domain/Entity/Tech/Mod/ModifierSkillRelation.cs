@@ -1,6 +1,4 @@
-﻿using UDMT.Domain.Entity.Char;
-
-namespace UDMT.Domain.Entity.Tech.Mod;
+﻿namespace UDMT.Domain.Entity.Tech.Mod;
 
 public class ModifierSkillRelation
 {

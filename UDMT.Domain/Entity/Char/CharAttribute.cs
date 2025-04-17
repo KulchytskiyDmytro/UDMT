@@ -12,6 +12,10 @@ public class CharAttribute
     
     public int? BonusOverride { get; set; }
     
+    public int Value { get; set; }
+    
+    public int ValueOverride { get; set; }
+    
     public int CharacterId { get; set; }
     
     public Character Character { get; set; }

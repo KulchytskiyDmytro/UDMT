@@ -25,30 +25,9 @@ public class BackgroundService : IBackgroundService
         var backgrounds = await _dbContext.Set<Background>()
             .ProjectToType<GetBackgroundsDto>()
             .ToArrayAsync(ct);
-        
-        // TODO: Think about Optimizing Source and Modifier Binding 
-        var modifierRelations = await _dbContext.Set<ModifierRelation>()
-            .Where(mr => mr.SourceType == ModifierSourceType.Background)
-            .ToListAsync(ct);
-        
-        var modifierIds = modifierRelations.Select(r => r.ModifierId).Distinct().ToList();
-        
-        var modifiers = await _dbContext.Set<Domain.Entity.Tech.Mod.Modifier>()
-            .Where(m => modifierIds.Contains(m.Id))
-            .ProjectToType<ModifierDto>()
-            .ToListAsync(ct);
-        
-        foreach (var bgDto in backgrounds)
-        {
-            var relatedIds = modifierRelations
-                .Where(r => r.SourceId == bgDto.Id)
-                .Select(r => r.ModifierId)
-                .ToList();
 
-            bgDto.Modifiers  = modifiers
-                .Where(m => relatedIds.Contains(m.Id))
-                .ToList();
-        }
+        await ModifierRelationFactory.BindModifierRelationsAsync(_dbContext, backgrounds, 
+            ModifierSourceType.Background, ct);
         
         return backgrounds;
     }
