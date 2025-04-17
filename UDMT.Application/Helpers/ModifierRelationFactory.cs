@@ -67,7 +67,6 @@ public static class ModifierRelationFactory
         CancellationToken ct)
     where TDto : class, IModifierContainer
     {
-
         var modifierRelations = await dbContext.Set<ModifierRelation>()
             .Where(mr => mr.SourceType == sourceType)
             .ToListAsync(ct);
@@ -94,16 +93,17 @@ public static class ModifierRelationFactory
     }
 
     /// <summary>
-    /// Get Modifiers by SourceId
+    /// Get Modifiers by Entity
     /// </summary>
     public static async Task<ICollection<ModifierDto>> GetModifiersBySourceIdAsync(
         IAppDbContext dbContext,
         int sourceId, 
+        ModifierSourceType sourceType,
         CancellationToken ct
     )
     {
         var modifierRelations = await dbContext.Set<ModifierRelation>()
-            .Where(mr => mr.SourceId == sourceId)
+            .Where(mr => mr.SourceId == sourceId && mr.SourceType == sourceType)
             .ToListAsync(ct);
         
         var modifierIds = modifierRelations

@@ -8,4 +8,6 @@ public class RaceDto
     public bool IsHomebrew { get; set; }
     
     public ICollection<SubRaceDto>? SubRaces { get; set; }
+    
+    public ICollection<int>? ModifierIds { get; set; }
 }

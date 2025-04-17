@@ -22,7 +22,7 @@ public class RaceController : ControllerBase
     }
 
     [HttpGet("get")]
-    public async Task<ICollection<RaceDto>> GetRaces(CancellationToken ct)
+    public async Task<ICollection<GetRacesDto>> GetRaces(CancellationToken ct)
     {
         return await _raceService.GetRacesAsync(ct);
     }

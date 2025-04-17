@@ -20,4 +20,10 @@ public class CharController : ControllerBase
     {
         await _charService.CreateChar(charDto, ct);
     }
+
+    [HttpGet("get/{charId}")]
+    public async Task<CharDto> GetCharById([FromRoute] int charId, CancellationToken ct)
+    {
+        return await _charService.GetChar(charId, ct);
+    }
 }

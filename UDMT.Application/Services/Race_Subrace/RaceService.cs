@@ -3,8 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using NeerCore.DependencyInjection;
 using NeerCore.Exceptions;
 using UDMT.Application.DTO;
+using UDMT.Application.Helpers;
 using UDMT.Domain.Context;
 using UDMT.Domain.Entity.Race_Subrace;
+using UDMT.Domain.Entity.Tech.Mod;
 
 namespace UDMT.Application.Services.Race_Subrace;
 
@@ -20,12 +22,15 @@ public class RaceService : IRaceService
         _subRaceService = subRaceService; // Currently not used but let it be here for now
     }
     
-    public async Task<ICollection<RaceDto>> GetRacesAsync(CancellationToken ct)
+    public async Task<ICollection<GetRacesDto>> GetRacesAsync(CancellationToken ct)
     {
         var races = await _dbContext.Set<Race>()
             .Include(r => r.SubRaces)
-            .ProjectToType<RaceDto>()
-            .ToListAsync(ct);
+            .ProjectToType<GetRacesDto>()
+            .ToArrayAsync(ct);
+        
+        await ModifierRelationFactory.BindModifierRelationsAsync(_dbContext, races, 
+            ModifierSourceType.Race, ct);
         
         return races;
     }
@@ -36,6 +41,12 @@ public class RaceService : IRaceService
         
         await _dbContext.Set<Race>().AddAsync(race, ct);
         await _dbContext.SaveChangesAsync(ct);
+        
+        if (raceDto.ModifierIds is not null)
+        {
+            await ModifierRelationFactory.SetModifierRelationAsync(_dbContext, raceDto.ModifierIds, 
+                race.Id, ModifierSourceType.Race, ct);
+        }
         
         return race.Adapt<RaceDto>();
     }
@@ -52,6 +63,12 @@ public class RaceService : IRaceService
 
         await _dbContext.SaveChangesAsync(ct);
 
+        if (raceDto.ModifierIds is not null)
+        {
+            await ModifierRelationFactory.SetModifierRelationAsync(_dbContext, raceDto.ModifierIds, 
+                race.Id, ModifierSourceType.Race, ct);
+        }
+        
         return raceUpdated.Adapt<RaceDto>();
     }
 

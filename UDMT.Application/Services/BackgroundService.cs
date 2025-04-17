@@ -55,8 +55,6 @@ public class BackgroundService : IBackgroundService
             .FirstOrDefaultAsync(ct);
 
         if (background is null) throw new NotFoundException("No such Background");
-        
-        var updated = backgroundDto.Adapt(background);
 
         await _dbContext.SaveChangesAsync(ct);
         
@@ -66,7 +64,7 @@ public class BackgroundService : IBackgroundService
                 background.Id, ModifierSourceType.Background, ct);
         }
 
-        return updated.Adapt<BackgroundDto>(); 
+        return background.Adapt<BackgroundDto>(); 
     }
 
     public async Task DeleteBackgroundAsync(int bgId, CancellationToken ct)

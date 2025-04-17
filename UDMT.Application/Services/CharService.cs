@@ -1,5 +1,7 @@
 ﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using NeerCore.DependencyInjection;
+using NeerCore.Exceptions;
 using UDMT.Application.DTO;
 using UDMT.Application.Services.CharData;
 using UDMT.Domain.Context;
@@ -22,7 +24,17 @@ public class CharService : ICharService
         _initialization = initialization;
         _recalculation = recalculation;
     }
-    
+
+    public async Task<CharDto> GetChar(int charId, CancellationToken ct)
+    {
+        var character = await _dbContext.Set<Character>()
+            .FirstOrDefaultAsync(c => c.Id == charId, cancellationToken: ct);
+
+        if (character is null) throw new NotFoundException($"There is no such Character with Id: {charId}");
+
+        return character.Adapt<CharDto>();
+    }
+
     public async Task<CharDto> CreateChar(CharDto dto, CancellationToken ct)
     {
         var character = new Character()
@@ -36,10 +48,12 @@ public class CharService : ICharService
         await _dbContext.Set<Character>().AddAsync(character, ct);
         await _dbContext.SaveChangesAsync(ct);
 
+        // Create Attributes/SavingThrows/Skills
         await _initialization.InitializeCharacterAsync(character.Id, ct);
         
         await _recalculation.RecalculateCharacterStateAsync(character.Id, ct);
         
         return character.Adapt<CharDto>();
     }
+    
 }

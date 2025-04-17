@@ -17,6 +17,7 @@ public class CharacterModifierService : ICharacterModifierService
         _dbContext = dbContext;
     }
     
+    // TODO:Доделать добавление по типам
     public async Task ApplyModifiers(int characterId, IEnumerable<ModifierDto> mDtos, CancellationToken ct)
     {
         foreach (var mDto in mDtos)
@@ -26,8 +27,6 @@ public class CharacterModifierService : ICharacterModifierService
                 case ModifierType.AttributeBonus:
                     await ApplyAttributeModifierAsync(characterId, mDto, ct);
                     break;
-                
-                // сюда можно добавить другие ModifierType, например AC, Speed, и т.д.
                 default:
                     throw new ArgumentOutOfRangeException(
                         nameof(mDto.ModifierType),
@@ -46,8 +45,7 @@ public class CharacterModifierService : ICharacterModifierService
             .FirstOrDefault(a => a.AttributeType == mDto.AttributeType);
         if (attr != null)
             attr.Value += mDto.Value ?? 0;
-
-        // 3) Сохраняем все изменения одним запросом
+        
         await _dbContext.SaveChangesAsync(ct);
         
     }

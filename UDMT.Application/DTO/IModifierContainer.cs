@@ -2,6 +2,6 @@
 
 public interface IModifierContainer
 {
-    int Id { get; }
+    int Id { get; set; }
     ICollection<ModifierDto>? Modifiers { get; set; }
 }
