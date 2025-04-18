@@ -5,6 +5,6 @@ namespace UDMT.Application.Services.CharData;
 
 public interface ICharacterModifierService
 {
-    Task ApplyModifiers(int characterId, IEnumerable<ModifierDto> mDtos, CancellationToken ct);
+    Task ApplyModifiers(int characterId, ICollection<ModifierDto> mDtos, CancellationToken ct);
     
 }

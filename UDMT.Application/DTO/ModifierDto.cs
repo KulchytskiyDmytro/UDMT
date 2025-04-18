@@ -19,5 +19,7 @@ public class ModifierDto
 
     public AdvantageType? AdvantageType { get; set; }
     
+    public ProficiencyType ProficiencyType { get; set; }
+    
     public int? SkillId { get; set; }
 }

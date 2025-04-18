@@ -10,9 +10,11 @@ public class Modifier
     
     public string? Description { get; set; }
     
-    public ModifierType ModifierType { get; set; }
+    public ModifierType? ModifierType { get; set; }
     
-    public AttributeType AttributeType { get; set; }
+    public AttributeType? AttributeType { get; set; }
+    
+    public ProficiencyType? ProficiencyType { get; set; }
     
     public int? Value { get; set; }
 

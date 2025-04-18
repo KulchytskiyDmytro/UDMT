@@ -16,6 +16,12 @@ public class AppDbContext : DbContext, IAppDbContext
     
     public void RemoveRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class => base.RemoveRange(entities);
     
+    public async Task AddRangeAsync<TEntity>(IEnumerable<TEntity> entities, CancellationToken ct = default)
+        where TEntity : class
+    {
+        await base.AddRangeAsync(entities, ct);
+    }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);

@@ -59,17 +59,14 @@ public class RaceService : IRaceService
 
         if (race is null) throw new NotFoundException("No such Race");
 
-        var raceUpdated = raceDto.Adapt(race);
-
-        await _dbContext.SaveChangesAsync(ct);
-
-        if (raceDto.ModifierIds is not null)
-        {
-            await ModifierRelationFactory.SetModifierRelationAsync(_dbContext, raceDto.ModifierIds, 
-                race.Id, ModifierSourceType.Race, ct);
-        }
+        raceDto.Adapt(race);
         
-        return raceUpdated.Adapt<RaceDto>();
+        await ModifierRelationFactory.UpdateModifiersAsync(_dbContext, raceId,
+            ModifierSourceType.Race, raceDto.ModifierIds!, ct);
+        
+        await _dbContext.SaveChangesAsync(ct);
+        
+        return race.Adapt<RaceDto>();
     }
 
     public async Task DeleteRaceAsync(int raceId, CancellationToken ct)
@@ -79,6 +76,9 @@ public class RaceService : IRaceService
 
         if (race is null) throw new NotFoundException("No such Race");
 
+        await ModifierRelationFactory.RemoveModifierRelationsBySourceAsync(_dbContext, raceId,
+            ModifierSourceType.Race, ct);
+        
         _dbContext.Remove(race);
         await _dbContext.SaveChangesAsync(ct);
     }

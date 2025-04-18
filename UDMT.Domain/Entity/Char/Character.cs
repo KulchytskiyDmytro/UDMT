@@ -23,6 +23,12 @@ public class Character
         
     public int ProficiencyBonus { get; set; }
     
+    public int? Speed { get; set; }
+    
+    public int? ArmorClass { get; set; }
+    
+    public int? Initiative { get; set; }
+    
     public int RaceId { get; set; }
     public Race Race { get; set; }
     

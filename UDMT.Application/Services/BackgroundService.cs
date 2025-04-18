@@ -51,19 +51,15 @@ public class BackgroundService : IBackgroundService
     public async Task<BackgroundDto> UpdateBackgroundAsync(int bgId, BackgroundDto backgroundDto, CancellationToken ct)
     {
         var background = await _dbContext.Set<Background>()
-            .Where(b => b.Id == bgId)
-            .FirstOrDefaultAsync(ct);
+            .FirstOrDefaultAsync(b => b.Id == bgId, ct);
 
         if (background is null) throw new NotFoundException("No such Background");
-
+        
+        await ModifierRelationFactory.UpdateModifiersAsync(_dbContext, bgId,
+            ModifierSourceType.Background, backgroundDto.ModifierIds!, ct);
+        
         await _dbContext.SaveChangesAsync(ct);
         
-        if (backgroundDto.ModifierIds is not null)
-        {
-            await ModifierRelationFactory.SetModifierRelationAsync(_dbContext, backgroundDto.ModifierIds, 
-                background.Id, ModifierSourceType.Background, ct);
-        }
-
         return background.Adapt<BackgroundDto>(); 
     }
 
@@ -74,7 +70,7 @@ public class BackgroundService : IBackgroundService
         
         if (background is null) throw new NotFoundException("No such Background");
 
-        await ModifierRelationFactory.RemoveModifierRelationsAsync(_dbContext, background.Id,
+        await ModifierRelationFactory.RemoveModifierRelationsBySourceAsync(_dbContext, bgId,
             ModifierSourceType.Background, ct);
         
         _dbContext.Remove(background);

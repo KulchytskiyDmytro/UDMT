@@ -125,8 +125,9 @@ namespace UDMT.Domain.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
-                    ModifierType = table.Column<int>(type: "int", nullable: false),
-                    AttributeType = table.Column<int>(type: "int", nullable: false),
+                    ModifierType = table.Column<int>(type: "int", nullable: true),
+                    AttributeType = table.Column<int>(type: "int", nullable: true),
+                    ProficiencyType = table.Column<int>(type: "int", nullable: true),
                     Value = table.Column<int>(type: "int", nullable: true),
                     AdvantageType = table.Column<int>(type: "int", nullable: true)
                 },
@@ -289,6 +290,8 @@ namespace UDMT.Domain.Migrations
                     Deity = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     Backstory = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
                     ProficiencyBonus = table.Column<int>(type: "int", nullable: false),
+                    Speed = table.Column<int>(type: "int", nullable: true),
+                    ArmorClass = table.Column<int>(type: "int", nullable: true),
                     RaceId = table.Column<int>(type: "int", nullable: false),
                     BackgroundId = table.Column<int>(type: "int", nullable: false),
                     MaxHp = table.Column<int>(type: "int", nullable: false),
@@ -372,7 +375,7 @@ namespace UDMT.Domain.Migrations
                     BonusModifier = table.Column<int>(type: "int", nullable: false),
                     BonusOverride = table.Column<int>(type: "int", nullable: true),
                     Value = table.Column<int>(type: "int", nullable: false),
-                    ValueOverride = table.Column<int>(type: "int", nullable: true),
+                    ValueOverride = table.Column<int>(type: "int", nullable: false),
                     CharacterId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

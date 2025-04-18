@@ -3,8 +3,8 @@
 public enum ModifierType
 {
     AttributeBonus,
-    SkillBonus,
     SavingThrowBonus,
+    SkillBonus,
     Speed,
     ArmorClass,
     Initiative,

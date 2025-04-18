@@ -9,7 +9,7 @@ namespace UDMT.Application.Helpers;
 public static class ModifierRelationFactory
 {
     /// <summary>
-    /// Set/Updates Modifier to Specific Entity
+    /// Set Modifier to Specific Entity
     /// </summary>
     public static async Task SetModifierRelationAsync(
         IAppDbContext dbContext, 
@@ -44,7 +44,7 @@ public static class ModifierRelationFactory
     /// <summary>
     /// Deletes Relations Table when Source is deleted
     /// </summary>
-    public static async Task RemoveModifierRelationsAsync(
+    public static async Task RemoveModifierRelationsBySourceAsync(
         IAppDbContext dbContext,
         int sourceId,
         ModifierSourceType sourceType,
@@ -55,10 +55,12 @@ public static class ModifierRelationFactory
             .ToListAsync(ct);
 
         dbContext.RemoveRange(relations);
+        
+        await dbContext.SaveChangesAsync(ct);
     }
 
     /// <summary>
-    /// Binds Modifiers to Entities
+    /// Gets Modifiers and adds them to EntitiesDto
     /// </summary>
     public static async Task BindModifierRelationsAsync<TDto>(
         IAppDbContext dbContext,
@@ -116,5 +118,70 @@ public static class ModifierRelationFactory
             .ToListAsync(ct);
 
         return modifiers;
+    }
+
+    /// <summary>
+    /// Update Modifiers to Entities
+    /// </summary>
+    public static async Task UpdateModifiersAsync(
+        IAppDbContext dbContext,
+        int sourceId,
+        ModifierSourceType sourceType,
+        ICollection<int> newModifierIds,
+        CancellationToken ct)
+    {
+        var modifierRelations = await dbContext.Set<ModifierRelation>()
+            .Where(mr => mr.SourceId == sourceId && mr.SourceType == sourceType)
+            .ToListAsync(ct);
+        
+        var modifierIds = modifierRelations
+            .Select(r => r.ModifierId)
+            .ToList();
+        
+        var newModifiers = newModifierIds.OrderBy(x => x).ToList();
+        var oldModifiers = modifierIds.OrderBy(x => x).ToList();
+
+        if (!newModifiers.SequenceEqual(oldModifiers))
+        {
+            await SetAndDeleteModifiersAsync(
+                dbContext, sourceId, sourceType, newModifiers, oldModifiers, ct);
+        }
+    }
+    
+    private static async Task SetAndDeleteModifiersAsync(
+        IAppDbContext dbContext,
+        int sourceId,
+        ModifierSourceType sourceType,
+        ICollection<int> newModifierIds,
+        ICollection<int> oldModifierIds,
+        CancellationToken ct)
+    {
+        var toRemove = oldModifierIds.Except(newModifierIds).ToList();
+        var toAdd = newModifierIds.Except(oldModifierIds).ToList();
+
+        if (toRemove.Any())
+        {
+            var relationsToRemove = await dbContext.Set<ModifierRelation>()
+                .Where(mr => mr.SourceId == sourceId &&
+                             mr.SourceType == sourceType &&
+                             toRemove.Contains(mr.ModifierId))
+                .ToListAsync(ct);
+
+            dbContext.RemoveRange(relationsToRemove);
+        }
+        
+        if (toAdd.Any())
+        {
+            var relationsToAdd = toAdd.Select(modifierId => new ModifierRelation
+            {
+                ModifierId = modifierId,
+                SourceId = sourceId,
+                SourceType = sourceType
+            });
+
+            await dbContext.AddRangeAsync(relationsToAdd, ct);
+        }
+        
+        await dbContext.SaveChangesAsync(ct);
     }
 }

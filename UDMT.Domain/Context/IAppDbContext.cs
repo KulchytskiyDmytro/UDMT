@@ -12,4 +12,7 @@ public interface IAppDbContext
     EntityEntry<TEntity> Remove<TEntity>(TEntity entity) where TEntity : class;
     
     void RemoveRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class;
+    
+    Task AddRangeAsync<TEntity>(IEnumerable<TEntity> entities, CancellationToken ct = default)
+        where TEntity : class;
 }

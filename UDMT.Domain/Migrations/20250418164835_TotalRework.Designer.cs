@@ -11,7 +11,7 @@ using UDMT.Domain.Context;
 namespace UDMT.Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250417114719_TotalRework")]
+    [Migration("20250418164835_TotalRework")]
     partial class TotalRework
     {
         /// <inheritdoc />
@@ -72,7 +72,7 @@ namespace UDMT.Domain.Migrations
                     b.Property<int>("Value")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ValueOverride")
+                    b.Property<int>("ValueOverride")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -258,6 +258,9 @@ namespace UDMT.Domain.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
+                    b.Property<int?>("ArmorClass")
+                        .HasColumnType("int");
+
                     b.Property<int>("BackgroundId")
                         .HasColumnType("int");
 
@@ -301,6 +304,9 @@ namespace UDMT.Domain.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("RaceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Speed")
                         .HasColumnType("int");
 
                     b.Property<int?>("TemporaryHp")
@@ -754,20 +760,23 @@ namespace UDMT.Domain.Migrations
                     b.Property<int?>("AdvantageType")
                         .HasColumnType("int");
 
-                    b.Property<int>("AttributeType")
+                    b.Property<int?>("AttributeType")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasMaxLength(2000)
                         .HasColumnType("nvarchar(2000)");
 
-                    b.Property<int>("ModifierType")
+                    b.Property<int?>("ModifierType")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("ProficiencyType")
+                        .HasColumnType("int");
 
                     b.Property<int?>("Value")
                         .HasColumnType("int");
