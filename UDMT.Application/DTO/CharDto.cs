@@ -13,4 +13,5 @@ public class CharDto
     public int BackgroundId { get; set; }
     
     public int ClassId { get; set; }
+    
 }

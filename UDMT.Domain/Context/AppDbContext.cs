@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using NeerCore.DependencyInjection;
+using UDMT.Domain.Entity;
+using UDMT.Domain.Entity.Shared;
 
 namespace UDMT.Domain.Context;
 

@@ -9,4 +9,6 @@ public class Skill
     public string Name { get; set; }
         
     public AttributeType AttributeType { get; set; }
+    
+    public bool IsHomebrew { get; set; }
 }

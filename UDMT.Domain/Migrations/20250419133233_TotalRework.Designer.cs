@@ -11,7 +11,7 @@ using UDMT.Domain.Context;
 namespace UDMT.Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250418164835_TotalRework")]
+    [Migration("20250419133233_TotalRework")]
     partial class TotalRework
     {
         /// <inheritdoc />
@@ -278,6 +278,9 @@ namespace UDMT.Domain.Migrations
                     b.Property<string>("Gender")
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
+
+                    b.Property<int?>("Initiative")
+                        .HasColumnType("int");
 
                     b.Property<int>("Level")
                         .HasColumnType("int");
@@ -658,6 +661,9 @@ namespace UDMT.Domain.Migrations
 
                     b.Property<int>("AttributeType")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsHomebrew")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()

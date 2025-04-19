@@ -8,5 +8,7 @@ public static class MapsterConfig
 {
     public static void RegisterMappings()
     {
+        TypeAdapterConfig<RaceDto, Race>.NewConfig()
+            .Ignore(dest => dest.SubRaces);
     }   
 }

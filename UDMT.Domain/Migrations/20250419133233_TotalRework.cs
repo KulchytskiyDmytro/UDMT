@@ -158,7 +158,8 @@ namespace UDMT.Domain.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AttributeType = table.Column<int>(type: "int", nullable: false)
+                    AttributeType = table.Column<int>(type: "int", nullable: false),
+                    IsHomebrew = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -292,6 +293,7 @@ namespace UDMT.Domain.Migrations
                     ProficiencyBonus = table.Column<int>(type: "int", nullable: false),
                     Speed = table.Column<int>(type: "int", nullable: true),
                     ArmorClass = table.Column<int>(type: "int", nullable: true),
+                    Initiative = table.Column<int>(type: "int", nullable: true),
                     RaceId = table.Column<int>(type: "int", nullable: false),
                     BackgroundId = table.Column<int>(type: "int", nullable: false),
                     MaxHp = table.Column<int>(type: "int", nullable: false),

@@ -1,6 +1,9 @@
-﻿using NeerCore.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using NeerCore.DependencyInjection;
+using NeerCore.Exceptions;
 using UDMT.Application.Helpers;
 using UDMT.Domain.Context;
+using UDMT.Domain.Entity;
 using UDMT.Domain.Entity.Char;
 using UDMT.Domain.Entity.Shared;
 
@@ -18,13 +21,14 @@ public class CharacterInitializationService : ICharacterInitializationService
     
     public async Task InitializeCharacterAsync(int characterId, CancellationToken ct)
     {
-        await GenerateAttributes(characterId, ct);
-        await GenerateSavingThrows(characterId, ct);
-            
+        await GenerateCharAttributes(characterId, ct);
+        await GenerateCharSavingThrows(characterId, ct);
+        await GenerateCharSkills(characterId, ct);
+        
         await _dbContext.SaveChangesAsync(ct);
     }
     
-    private async Task GenerateAttributes(int characterId, CancellationToken ct)
+    private async Task GenerateCharAttributes(int characterId, CancellationToken ct)
     {
         var attrs = Enum.GetValues<AttributeType>()
             .Select(type => new CharAttribute
@@ -38,11 +42,9 @@ public class CharacterInitializationService : ICharacterInitializationService
         
         await _dbContext.Set<CharAttribute>()
             .AddRangeAsync(attrs, ct);
-        
-        await _dbContext.SaveChangesAsync(ct);
     }
 
-    private async Task GenerateSavingThrows(int characterId, CancellationToken ct)
+    private async Task GenerateCharSavingThrows(int characterId, CancellationToken ct)
     {
         var sList = Enum.GetValues<AttributeType>()
             .Select(type => new CharSavingThrow()
@@ -55,21 +57,26 @@ public class CharacterInitializationService : ICharacterInitializationService
         
         await _dbContext.Set<CharSavingThrow>()
             .AddRangeAsync(sList, ct);
-        
-        await _dbContext.SaveChangesAsync(ct);
     }
     
-    // TODO: Rethink Skill Entity 
-    // наверное стоит отказатся на время от кастомных скилов и строго типизировать их
-    private void GenerateSkills(Character character)
+    private async Task GenerateCharSkills(int characterId, CancellationToken ct)
     {
-        foreach (AttributeType type in Enum.GetValues<AttributeType>())
-        {
-            character.SavingThrows.Add(new CharSavingThrow()
+        var skillIds = await _dbContext.Set<Skill>()
+            .Where(s => !s.IsHomebrew)
+            .Select(s => s.Id)
+            .ToListAsync(ct);
+        
+        var skillList = skillIds
+            .Select(skillId => new CharSkill
             {
-                CharacterId = character.Id,
-                AttributeType = type
-            });
-        }
+                CharacterId = characterId,
+                SkillId = skillId,
+                ProficiencyType = ProficiencyType.None,
+                BonusModifier = -1
+            })
+            .ToList();
+
+        await _dbContext.Set<CharSkill>()
+            .AddRangeAsync(skillList, ct);
     }
 }

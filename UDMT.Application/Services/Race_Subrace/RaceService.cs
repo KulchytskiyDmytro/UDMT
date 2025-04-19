@@ -31,7 +31,7 @@ public class RaceService : IRaceService
         
         await ModifierRelationFactory.BindModifierRelationsAsync(_dbContext, races, 
             ModifierSourceType.Race, ct);
-        
+
         return races;
     }
 
@@ -43,9 +43,16 @@ public class RaceService : IRaceService
         await _dbContext.SaveChangesAsync(ct);
         
         if (raceDto.ModifierIds is not null)
-        {
             await ModifierRelationFactory.SetModifierRelationAsync(_dbContext, raceDto.ModifierIds, 
                 race.Id, ModifierSourceType.Race, ct);
+
+        if (raceDto.SubRaces is not null)
+        {
+            var subraces = raceDto.SubRaces.ToList();
+            foreach (var subrace in subraces)
+            {
+                await _subRaceService.CreateSubraceAsync(race.Id, subrace, ct);
+            }
         }
         
         return race.Adapt<RaceDto>();

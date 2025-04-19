@@ -5,7 +5,9 @@ using NeerCore.Exceptions;
 using UDMT.Application.DTO;
 using UDMT.Application.Helpers;
 using UDMT.Domain.Context;
+using UDMT.Domain.Entity;
 using UDMT.Domain.Entity.Back;
+using UDMT.Domain.Entity.Shared;
 using UDMT.Domain.Entity.Tech.Mod;
 
 namespace UDMT.Application.Services;
